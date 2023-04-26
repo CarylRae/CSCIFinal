@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 
+//test
+
 public class GameCanvas extends JComponent{
 
     private int width;
