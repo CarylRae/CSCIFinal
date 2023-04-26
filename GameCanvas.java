@@ -1,22 +1,27 @@
 package CSCIFinal;
 
-import java.awt.*;
 import javax.swing.*;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-
-
-//test
+import java.awt.*;
+import java.util.*;
+import java.awt.event.*;
 
 public class GameCanvas extends JComponent{
 
     private int width;
     private int height;
 
+    private MazeSkeleton MZ;
+    private ArrayList<MazeBlock> canvasMaze;
+    private Adam adam;
+
     public GameCanvas(int w, int h) {
         width = w;
         height = h;
         setPreferredSize(new Dimension(width,height));
+        MZ = new MazeSkeleton(width);
+        canvasMaze = MZ.buildMaze(); // Lamberlain V. Muli helped here
+        adam = new Adam(419,550,10);
+
     }
 
     @Override
@@ -28,7 +33,42 @@ public class GameCanvas extends JComponent{
                 RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHints(rh);
 
+        for(MazeBlock block : canvasMaze)
+        {
+            block.draw(g2d);
+        }
+
+        adam.draw(g2d);
+    }
+
+    public void startAnimation() {
+        javax.swing.Timer animationTimer = new javax.swing.Timer(45,new ActionListener() {
+
+            int speed = 4;
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                adam.moveA(speed);
+                repaint();
+
+                for(MazeBlock block : canvasMaze){
+                    if(block.isColliding(adam)){
+                        speed = 0;
+                        break;
+                    }
+                }
+
+                adam.moveA(speed);
+                repaint();
+            }
+
+
+        });
+
+        animationTimer.start();
+    }
+
+
+    public Adam getAdam(){
+        return adam;
     }
 }
-
-
