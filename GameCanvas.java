@@ -5,6 +5,8 @@ import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
 
+//test
+
 public class GameCanvas extends JComponent{
 
     private int width;
