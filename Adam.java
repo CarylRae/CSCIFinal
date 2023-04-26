@@ -61,31 +61,78 @@ public class Adam {
 
 
         public void setDirection(String dir) {
-            if(dir.equals("up")) {
-                up = true;
-                down = false;
-                left = false;
-                right = false;
-            } else if (dir.equals("down")) {
-                up = false;
-                down = true;
-                left = false;
-                right = false;
-            } else if (dir.equals("left")) {
-                up = false;
-                down = false;
-                left = true;
-                right = false;
-            } else if (dir.equals("right")) {
-                up = false;
-                down = false;
-                left = false;
-                right = true;
-            } else {
-                up = false;
-                down = false;
-                left = false;
-                right = false;
+            String direc = dir;
+            boolean exit = false;
+            switch (dir){
+                case "up":
+                    
+                        up = true;
+                        down = false;
+                        left = false;
+                        right = false;
+                       
+                        for(MazeBlock block : canvasMaze){
+                            if(block.isColliding(adam)){
+                                exit = true;
+                                break;
+                            }
+                        }
+
+                        if (exit == true)
+                            break;
+                    
+                   
+                case "down":
+                    up = false;
+                    down = true;
+                    left = false;
+                    right = false;
+
+                    for(MazeBlock block : canvasMaze){
+                        if(block.isColliding(adam)){
+                            exit = true;
+                            break;
+                        }
+                    }
+
+                    if (exit == true)
+                        break;
+
+                case "left":
+                    up = false;
+                    down = false;
+                    left = true;
+                    right = false;
+
+                    for(MazeBlock block : canvasMaze){
+                        if(block.isColliding(adam)){
+                            exit = true;
+                            break;
+                        }
+                    }
+
+                    if (exit == true)
+                        break;
+                case "right":
+                    up = false;
+                    down = false;
+                    left = false;
+                    right = true;
+
+                    for(MazeBlock block : canvasMaze){
+                        if(block.isColliding(adam)){
+                            exit = true;
+                            break;
+                        }
+                    }
+
+                    if (exit == true)
+                        break;
+                default:
+                    up = false;
+                    down = false;
+                    left = false;
+                    right = false;
             }
         }
 

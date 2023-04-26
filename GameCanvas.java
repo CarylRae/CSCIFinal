@@ -5,8 +5,6 @@ import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
 
-//test
-
 public class GameCanvas extends JComponent{
 
     private int width;
@@ -49,16 +47,6 @@ public class GameCanvas extends JComponent{
             int speed = 4;
             @Override
             public void actionPerformed(ActionEvent ae) {
-                adam.moveA(speed);
-                repaint();
-
-                for(MazeBlock block : canvasMaze){
-                    if(block.isColliding(adam)){
-                        speed = 0;
-                        break;
-                    }
-                }
-
                 adam.moveA(speed);
                 repaint();
             }
