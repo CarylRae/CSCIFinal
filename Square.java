@@ -1,5 +1,4 @@
-/*
-package CSCIFinal;
+
 
 import java.awt.*;
 import java.awt.geom.*;
@@ -25,8 +24,20 @@ public class Square implements MazeBlock{
 
     }
 
+    public double getX(){
+        return x;
+    }
+
+    public double getY(){
+        return y;
+    }
+
+    public double getWidth(){
+        return size;
+    }
+
+    public double getHeight(){
+        return size;
+    }
+
 }
-
-
-
-*/

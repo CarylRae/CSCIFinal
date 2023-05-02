@@ -1,5 +1,3 @@
-package CSCIFinal;
-
 public class GameStarter {
     public static void main(String[] args) {
 
@@ -8,4 +6,3 @@ public class GameStarter {
         game.addKeyBindings();
     }
 }
-

@@ -1,6 +1,4 @@
-//Abarico (22-04-2023)
 
-package CSCIFinal;
 
 import java.awt.*;
 import java.awt.geom.*;
@@ -30,23 +28,19 @@ public class VRectangle implements MazeBlock{
         g2d.fill(rectangle);
     }
 
-    public boolean isColliding(Adam adam)
-    {
-        System.out.println("Vee");
-        return !( //negated (!) for readability/semantics because method name isColliding
-                this.x + this.width <= adam.getX() || //r1 left of r2
-                this.x >= adam.getX() + adam.getWidth() || //r1 right of r2
-                this.y + this.height <= adam.getY() || //r1 above r2
-                this.y >= adam.getY() + adam.getHeight() //r1 below r2
-
-        );
-
-        //if at least 1 is true, then NOT colliding
-        //if all false, then colliding
+    public double getX(){
+        return x;
     }
 
-    public double getSize(){
+    public double getY(){
+        return y;
+    }
+
+    public double getWidth(){
+        return width;
+    }
+
+    public double getHeight(){
         return height;
     }
-
 }

@@ -1,4 +1,4 @@
-package CSCIFinal;
+
 
 import java.util.ArrayList;
 
@@ -8,84 +8,10 @@ public class MazeSkeleton {
     private final int MAZE_EDGE_X;
     private final int MAZE_EDGE_Y;
     private ArrayList<MazeBlock> mazeFramework;
-    private VRectangle v1;
-    private VRectangle v2;
-    private VRectangle v3;
-    private VRectangle v4;
-    private VRectangle v5;
-    private VRectangle v6;
-    private VRectangle v7;
-    private VRectangle v8;
-    private VRectangle v9;
-    private VRectangle v10;
-    private VRectangle v11;
-    private VRectangle v12;
-    private VRectangle v13;
-    private VRectangle v14;
-    private VRectangle v15;
-    private VRectangle v16;
-
-
-    private HRectangle h1;
-    private HRectangle h2;
-    private HRectangle h3;
-    private HRectangle h4;
-    private HRectangle h5;
-    private HRectangle h6;
-    private HRectangle h7;
-    private HRectangle h8;
-    private HRectangle h9;
-    private HRectangle h10;
-    private HRectangle h11;
-    private HRectangle h12;
-    private HRectangle h13;
-    private HRectangle h14;
-    private HRectangle h15;
-    private HRectangle h16;
-    private HRectangle w1;
-    private HRectangle w2;
-    private HRectangle w3;
-    private HRectangle w4;
-    private HRectangle w5;
-    private HRectangle w6;
-    private HRectangle w7;
-    private HRectangle w8;
-    private HRectangle w9;
-    private HRectangle w10;
-    private HRectangle w11;
-    private VRectangle w12;
-    private HRectangle w13;
-    private VRectangle w14;
-    private HRectangle w15;
-    private VRectangle w16;
-    private VRectangle w17;
-    private HRectangle w18;
-    private VRectangle w19;
-    private HRectangle w20;
-    private VRectangle w21;
-    private HRectangle w22;
-    private VRectangle w23;
-    private HRectangle w24;
-    private VRectangle w25;
-    private HRectangle w26;
-    private VRectangle w27;
-    private HRectangle w28;
-    private VRectangle w29;
-    private HRectangle w30;
-    private VRectangle w31;
-    private HRectangle w32;
-    private VRectangle w33;
-    private HRectangle w34;
-    private VRectangle w35;
-    private HRectangle w36;
-    private VRectangle w37;
-    private HRectangle w38;
-    private VRectangle w39;
-    private HRectangle w40;
-    private VRectangle w41;
-    private HRectangle w42;
-    private HRectangle w43;
-    private HRectangle w44;
+    private VRectangle v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16; // walls
+    private HRectangle h1, h2, h3, h4, h5, h6, h7, h8, h9, h10, h11, h12, h13, h14, h15, h16; //walls
+    private HRectangle w1, w2,w3,w4,w5,w6,w7,w8,w9,w10,w11,w13,w15,w18,w20,w22,w24,w26,w28,w30,w32,w34,w36,w38,w40,w42,w43,w44; //guts
+    private VRectangle w12,w14,w16,w17,w19,w21,w23,w25,w27,w29,w31,w33,w35,w37,w39,w41; //guts
 
     public MazeSkeleton(int w) {
         mazeFramework = new ArrayList<>();
@@ -286,8 +212,4 @@ public class MazeSkeleton {
     public ArrayList buildMaze(){
         return mazeFramework;
     }
-
-
 }
-
-

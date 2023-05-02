@@ -1,4 +1,4 @@
-package CSCIFinal;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -41,22 +41,46 @@ public class GameCanvas extends JComponent{
         adam.draw(g2d);
     }
 
-    public void startAnimation() {
-        javax.swing.Timer animationTimer = new javax.swing.Timer(45,new ActionListener() {
+    public void collisionDetection (){
+        double adj = 3.5;
 
-            int speed = 4;
+        for(MazeBlock block : canvasMaze)//if(player touching wall)
+        {
+            if(adam.isColliding(block)){
+                if(adam.getUp()){
+                    adam.setY(adam.getY()+adj);
+                }
+                else if(adam.getDown()){
+                    adam.setY(adam.getY() -adj);
+                }
+
+                else if(adam.getRight()){
+                    adam.setX(adam.getX()-adj);
+                }
+
+                else if(adam.getLeft()){
+                    adam.setX(adam.getX() + adj);
+                }
+
+                adam.setDirection("stop");
+            }
+        }
+    }
+
+    public void startAnimation() {
+        javax.swing.Timer animationTimer = new javax.swing.Timer(1,new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent ae) {
-                adam.moveA(speed);
+                adam.moveA();
+                collisionDetection();
                 repaint();
             }
-
 
         });
 
         animationTimer.start();
     }
-
 
     public Adam getAdam(){
         return adam;
