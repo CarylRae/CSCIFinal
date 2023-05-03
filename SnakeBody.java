@@ -30,17 +30,17 @@ public class SnakeBody {
 
     public void draw(Graphics2D g2d) {
 
+        //snakeArray.add(new Rectangle2D.Double(x+15,y+15,size,size));
         snakeArray.add(new Rectangle2D.Double(x,y,size,size));
-        snakeArray.add(new Rectangle2D.Double(x,y,size,size));
-        snakeArray.add(new Rectangle2D.Double(x,y,size,size));
-        snakeArray.add(new Rectangle2D.Double(x,y,size,size));
-        snakeArray.add(new Rectangle2D.Double(x,y,size,size));
-        snakeArray.add(new Rectangle2D.Double(x,y,size,size));
+        // snakeArray.add(new Rectangle2D.Double(x,y,size,size));
+        // snakeArray.add(new Rectangle2D.Double(x,y,size,size));
+        // snakeArray.add(new Rectangle2D.Double(x,y,size,size));
+        // snakeArray.add(new Rectangle2D.Double(x,y,size,size));
 
 
 
-        g2d.setColor(Color.green);
-        //g2d.fill(square);
+        g2d.setColor(Color.red);
+        g2d.fill(new Rectangle2D.Double(x+15,y+15,size,size));
 
     }
 
