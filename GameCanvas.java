@@ -13,6 +13,8 @@ public class GameCanvas extends JComponent{
     private MazeSkeleton MZ;
     private ArrayList<MazeBlock> canvasMaze;
     private Adam adam;
+    private SnakeHead head;
+    private SnakeBody snakeBody;
 
     public GameCanvas(int w, int h) {
         width = w;
@@ -21,6 +23,8 @@ public class GameCanvas extends JComponent{
         MZ = new MazeSkeleton(width);
         canvasMaze = MZ.buildMaze(); // Lamberlain V. Muli helped here
         adam = new Adam(419,550,10);
+        head = new SnakeHead(200,300,10);
+        snakeBody = new SnakeBody(head);
 
     }
 
@@ -39,6 +43,9 @@ public class GameCanvas extends JComponent{
         }
 
         adam.draw(g2d);
+        //drawing snake
+        head.draw(g2d);
+        snakeBody.draw(g2d);
     }
 
     public void collisionDetection (){
