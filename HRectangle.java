@@ -25,7 +25,7 @@ public class HRectangle implements MazeBlock{
     {
         Rectangle2D.Double rectangle = new Rectangle2D.Double(x,y,width,height);
 
-        g2d.setColor(Color.blue);
+        g2d.setColor(Color.BLACK);
         g2d.fill(rectangle);
     }
 
