@@ -82,7 +82,7 @@ public class SnakeBody {
     public boolean getLeft(){
         return left;
     }
-    public void setX(double n){
+    public void setX(double n){ //test
         x=n;
     }
 
