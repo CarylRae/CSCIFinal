@@ -10,6 +10,8 @@ public class SnakeHead {
     private double y;
     private double size;
     private boolean up, down, left, right;
+    
+
 
     public SnakeHead(double x, double y, double size){
         this.x = x;
@@ -21,13 +23,15 @@ public class SnakeHead {
         this.left = false;
         this.right = false;
 
+        
+
     }
 
     public void draw(Graphics2D g2d) {
 
         Rectangle2D.Double head = new Rectangle2D.Double(x,y,size,size);
 
-        g2d.setColor(Color.green);
+        g2d.setColor(Color.RED);
         g2d.fill(head);
 
     }
@@ -114,6 +118,7 @@ public class SnakeHead {
                 this.y >= other.getY() + other.getHeight());
     }
 
+   
 
 
 }

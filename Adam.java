@@ -21,7 +21,8 @@ public class Adam {
 
     }
 
-    public void draw(Graphics2D g2d) {
+    public void draw(Graphics2D g2d) 
+    {
 
         Rectangle2D.Double square = new Rectangle2D.Double(x,y,size,size);
 

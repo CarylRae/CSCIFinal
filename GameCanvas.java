@@ -16,6 +16,10 @@ public class GameCanvas extends JComponent{
     private SnakeHead head;
     private SnakeBody snakeBody;
 
+    private ArrayList<Double> snakeXCoordinates;
+    private ArrayList<Double> snakeYCoordinates;
+
+
     public GameCanvas(int w, int h) {
         width = w;
         height = h;
@@ -23,8 +27,12 @@ public class GameCanvas extends JComponent{
         MZ = new MazeSkeleton(width);
         canvasMaze = MZ.buildMaze(); // Lamberlain V. Muli helped here
         adam = new Adam(419,550,10);
-        head = new SnakeHead(200,300,10);
+        head = new SnakeHead(416.5,315.5,10);
+
         snakeBody = new SnakeBody(head);
+
+        snakeXCoordinates = new ArrayList<Double>();
+        snakeYCoordinates = new ArrayList<Double>();
 
     }
 
@@ -92,4 +100,38 @@ public class GameCanvas extends JComponent{
     public Adam getAdam(){
         return adam;
     }
+
+    public void addXCoordinate(double x) {
+        snakeXCoordinates.add(head.getX());
+        snakeXCoordinates.add(head.getX());
+        snakeXCoordinates.add(head.getX());
+        snakeXCoordinates.add(head.getX());
+        snakeXCoordinates.add(head.getX());
+        snakeXCoordinates.add(head.getX());
+        snakeXCoordinates.add(head.getX());
+        snakeXCoordinates.add(head.getX());
+        snakeXCoordinates.add(head.getX());
+        snakeXCoordinates.add(head.getX());
+        snakeXCoordinates.add(head.getX());
+        snakeXCoordinates.add(head.getX());
+
+        
+    }
+
+    public void addYCoordinate(double y) {
+        snakeYCoordinates.add(head.getY());
+        snakeYCoordinates.add(head.getY());
+        snakeYCoordinates.add(head.getY());
+        snakeYCoordinates.add(head.getY());
+        snakeYCoordinates.add(head.getY());
+        snakeYCoordinates.add(head.getY());
+        snakeYCoordinates.add(head.getY());
+        snakeYCoordinates.add(head.getY());
+        snakeYCoordinates.add(head.getY());
+        snakeYCoordinates.add(head.getY());
+        snakeYCoordinates.add(head.getY());
+        
+        
+    }
+
 }
