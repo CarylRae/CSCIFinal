@@ -87,7 +87,7 @@ public class GameCanvas extends JComponent{
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                adam.moveA();
+                adam.move(2);
                 collisionDetection();
                 repaint();
             }
@@ -130,7 +130,6 @@ public class GameCanvas extends JComponent{
         snakeYCoordinates.add(head.getY());
         snakeYCoordinates.add(head.getY());
         snakeYCoordinates.add(head.getY());
-        
         
     }
 

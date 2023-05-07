@@ -4,8 +4,8 @@
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
-public class Adam {
-    private double x;
+public class Adam extends Player{
+   /*  private double x;
     private double y;
     private double size;
     private boolean up, down, left, right;
@@ -19,8 +19,12 @@ public class Adam {
         this.left = false;
         this.right = false;
 
-    }
+    } */
 
+    public Adam(double x, double y, double size){
+        super(x, y, size);
+    }
+ 
     public void draw(Graphics2D g2d) 
     {
 
@@ -31,7 +35,7 @@ public class Adam {
 
     }
 
-    public void moveA(){
+    /* public void move(){
         int speed = 2;
 
         if(up) {
@@ -43,9 +47,9 @@ public class Adam {
         } else if(right) {
             x += speed;
         }
-    }
+    } */
 
-    public double getX(){
+    /* public double getX(){
         return x;
     }
 
@@ -75,9 +79,9 @@ public class Adam {
 
     public void setY(double m){
         y=m;
-    }
+    } */
 
-    public void setDirection(String dir) {
+    /* public void setDirection(String dir) {
         if(dir.equals("up")) {
             up = true;
             down = false;
@@ -111,7 +115,9 @@ public class Adam {
                 this.x >= other.getX() + other.getWidth() ||
                 this.y + this.size <= other.getY() ||
                 this.y >= other.getY() + other.getHeight());
-    }
+    } */
+
+    
 
 
 

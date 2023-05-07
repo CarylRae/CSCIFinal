@@ -3,42 +3,35 @@
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
-import java.util.*;
 
-public class SnakeHead extends Player {
-   /*  private double x;
-    private double y;
-    private double size;
-    private boolean up, down, left, right; */
-    
+public class Player { //superclass
+    protected double x;
+    protected double y;
+    protected double size;
+    protected boolean up, down, left, right;
 
-
-    public SnakeHead(double x, double y, double size){
-        super(x, y, size);
-        /* this.x = x;
+    public Player(double x, double y, double size){
+        this.x = x;
         this.y = y;
         this.size = size;
-
         this.up = false;
         this.down = false;
         this.left = false;
-        this.right = false; */
-
-        
-
+        this.right = false;
     }
 
-    public void draw(Graphics2D g2d) {
+ /*    public void draw(Graphics2D g2d) 
+    {
 
-        Rectangle2D.Double head = new Rectangle2D.Double(x,y,size,size);
+        Rectangle2D.Double square = new Rectangle2D.Double(x,y,size,size);
 
-        g2d.setColor(Color.RED);
-        g2d.fill(head);
+        g2d.setColor(Color.green);
+        g2d.fill(square);
 
-    }
+    } */
 
-    /* public void move(){
-        int speed = 2;
+    public void move(int speed){
+        //int speed = 2;
 
         if(up) {
             y -= speed;
@@ -111,18 +104,16 @@ public class SnakeHead extends Player {
             right = false;
         }
     }
- */
 
- //I suspect this shall be overridden later with method with more conditions
- 
-    /* public boolean isColliding(MazeBlock other) {
+    public boolean isColliding(MazeBlock other) {
         return!(this.x + this.size <= other.getX() ||
                 this.x >= other.getX() + other.getWidth() ||
                 this.y + this.size <= other.getY() ||
                 this.y >= other.getY() + other.getHeight());
-    } */
+    }
 
-   
+    
+
 
 
 }
