@@ -59,8 +59,8 @@ public class Player { //superclass of adam & snake
         x=n;
     }
 
-    public void setY(double m){
-        y=m;
+    public void setY(double n){
+        y=n;
     }
 
     public void setDirection(String dir) {

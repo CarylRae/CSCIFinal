@@ -48,7 +48,9 @@ public class GameCanvas extends JComponent{
             block.draw(g2d);
         }
 
+        //draw adam
         adam.draw(g2d);
+
         //drawing snake
         head.draw(g2d);
         snakeBody.draw(g2d);

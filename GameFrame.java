@@ -17,6 +17,7 @@ public class GameFrame extends JFrame{
     private WriteToServer wtsRunnable;
     private Player me, enemy;
 
+
     public GameFrame(int w, int h)
     {
         width = w;
@@ -49,7 +50,7 @@ public class GameFrame extends JFrame{
     }
 
     private void createPlayers(){
-        if(playerID == 1){
+        if(playerID == 1){ //For editing: Adam coordinates are not centered
             me = new Adam(419,550,10);
             enemy = new SnakeHead(416.5,300.5,10);
 
@@ -99,7 +100,7 @@ public class GameFrame extends JFrame{
     public void connectToServer()
     {
         try{
-            socket = new Socket("localhost",45371);
+            socket = new Socket("localhost",23000);
             DataInputStream in = new DataInputStream(socket.getInputStream());
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
             playerID = in.readInt();
@@ -139,8 +140,11 @@ public class GameFrame extends JFrame{
 
                     if (enemy != null)
                     {
-                        enemy.setX(dataIn.readDouble());
-                        enemy.setY(dataIn.readDouble());
+                        enemy.setX(enemyX);
+                        System.out.println("updating x to: " + enemyX);
+                        enemy.setY(enemyY);
+                        System.out.println("updating y to: " + enemyY);
+
                     }
                 }
             }catch(IOException iox){
@@ -156,8 +160,8 @@ public class GameFrame extends JFrame{
                 System.out.println("Message from Server: " + startMsg);
 
 
-                Thread readThread = new Thread((rfsRunnable));
-                Thread writeThread = new Thread((wtsRunnable));
+                Thread readThread = new Thread(rfsRunnable);
+                Thread writeThread = new Thread(wtsRunnable);
 
                 readThread.start();
                 writeThread.start();
@@ -181,9 +185,12 @@ public class GameFrame extends JFrame{
             try{
                 while(true)
                 {
+                    double meX = me.getX();
+                    double meY = me.getY();
+
                     if (me != null) {
-                        dataOut.writeDouble(me.getX());
-                        dataOut.writeDouble(me.getY());
+                        dataOut.writeDouble(meX);
+                        dataOut.writeDouble(meY);
                         dataOut.flush();
                     }
 

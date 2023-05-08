@@ -22,14 +22,14 @@ public class GameServer {
         maxPlayers = 2;
 
         //Starting position of players
-        adamX = 419;
+        /* adamX = 419;
         adamY = 550;
         snakeX = 416.5;
         snakeY = 300.5;
-
+ */
 
         try{
-            ss = new ServerSocket(45371);
+            ss = new ServerSocket(23000);
         }catch (IOException iox){
             System.out.println("IOException from GameServer constructor");
         }
@@ -123,12 +123,14 @@ public class GameServer {
                 while(true)
                 {
                     if(playerID==1)
-                    { //FOR REWRITING
+                    {
                         adamX = dataIn.readDouble();
                         adamY = dataIn.readDouble();
+
                     } else{
                         snakeX = dataIn.readDouble();
                         snakeY = dataIn.readDouble();
+
                     }
                 }
             }catch(IOException iox){
