@@ -25,7 +25,7 @@ public class Adam extends Player{
         super(x, y, size);
     }
  
-    public void draw(Graphics2D g2d) 
+    /* public void drawAdam(Graphics2D g2d) 
     {
 
         Rectangle2D.Double square = new Rectangle2D.Double(x,y,size,size);
@@ -33,7 +33,7 @@ public class Adam extends Player{
         g2d.setColor(Color.green);
         g2d.fill(square);
 
-    }
+    } */
 
     /* public void move(){
         int speed = 2;

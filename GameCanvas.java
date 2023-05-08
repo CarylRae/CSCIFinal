@@ -13,22 +13,24 @@ public class GameCanvas extends JComponent{
     private Adam adam;
     private SnakeHead head;
     private SnakeBody snakeBody;
+    private GameFrame f;
 
     private ArrayList<Double> snakeXCoordinates;
     private ArrayList<Double> snakeYCoordinates;
 
 
 
-    public GameCanvas(int w, int h) {
+    public GameCanvas(int w, int h, GameFrame frame) {
         width = w;
         height = h;
+        f = frame;
         setPreferredSize(new Dimension(width,height));
         MZ = new MazeSkeleton(width);
         canvasMaze = MZ.buildMaze(); // Lamberlain V. Muli helped here
-        adam = new Adam(419,550,10);
-        head = new SnakeHead(416.5,300.5,10);
+        //adam = new Adam(419,550,10);
+        //head = new SnakeHead(416.5,300.5,10);
 
-        snakeBody = new SnakeBody(head);
+        //snakeBody = new SnakeBody(head);
 
         snakeXCoordinates = new ArrayList<Double>();
         snakeYCoordinates = new ArrayList<Double>();
@@ -50,11 +52,9 @@ public class GameCanvas extends JComponent{
         }
 
         //draw adam
-        adam.draw(g2d);
-
-        //drawing snake
-        head.draw(g2d);
-        snakeBody.draw(g2d);
+        f.getMe().draw(g2d);
+        f.getEnemy().draw(g2d);
+        //snakeBody.draw(g2d);
     }
 
     public void collisionDetection (Player p){
@@ -95,10 +95,10 @@ public class GameCanvas extends JComponent{
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                collisionDetection(adam);
-                collisionDetection(head);
-                adam.move(1);
-                head.move(1);
+                //collisionDetection(adam);
+                collisionDetection(f.getMe());
+                f.getMe().move(1);
+                //head.move(1);
             
                 repaint();
             }

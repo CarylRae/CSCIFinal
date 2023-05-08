@@ -39,7 +39,7 @@ public class GameFrame extends JFrame{
 
         createPlayers();
 
-        gc = new GameCanvas(width,height);
+        gc = new GameCanvas(width,height,this);
         cp.add(gc);
         gc.startAnimation();
         //cp.setFocusable(true);
@@ -53,11 +53,20 @@ public class GameFrame extends JFrame{
         if(playerID == 1){ //For editing: Adam coordinates are not centered
             me = new Adam(419,550,10);
             enemy = new SnakeHead(416.5,300.5,10);
-
         } else {
             enemy = new Adam(419,550,10);
             me = new SnakeHead(416.5,300.5,10);
         }
+    }
+
+    public Player getMe()
+    {
+        return me;
+    }
+
+    public Player getEnemy()
+    {
+        return enemy;
     }
 
     public void addKeyBindings() {
@@ -89,12 +98,9 @@ public class GameFrame extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            if (playerID == 1){
-                gc.getAdam().setDirection(direction);
-            }else{
-                gc.getSnakeHead().setDirection(direction);
+                me.setDirection(direction);
             }
-        }
+            
     }
 
     public void connectToServer()
@@ -111,8 +117,9 @@ public class GameFrame extends JFrame{
                 System.out.println("Waking up the serpent...");
             }
 
-            rfsRunnable = new ReadFromServer(in);
             wtsRunnable = new WriteToServer(out);
+
+            rfsRunnable = new ReadFromServer(in);
             rfsRunnable.waitForStartMsg();
 
         }
@@ -190,7 +197,7 @@ public class GameFrame extends JFrame{
                 {
                     //Send Player's coordinates to Server
                     if (me != null) {
-                        dataOut.writeDouble( me.getX());
+                        dataOut.writeDouble(me.getX());
                         dataOut.writeDouble(me.getY());
                         //System.out.println("Sending MY coordinates: " + me.getX() + " and " + me.getY()); //FOR TESTING
                         dataOut.flush();

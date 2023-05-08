@@ -145,7 +145,7 @@ public class GameServer {
         {
             playerID = pid;
             dataOut = out;
-            if (numPlayers == 1){
+            if (playerID == 1){
                 System.out.println("WTC Adam Runnable created.");
 
             } else {
@@ -202,6 +202,5 @@ public class GameServer {
         GameServer gs = new GameServer();
         gs.acceptConnections();
     }
-
-
 }
+ 

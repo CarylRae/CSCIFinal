@@ -99,4 +99,15 @@ public class Player { //superclass of adam & snake
                 this.y >= other.getY() + other.getHeight());
     }
 
+    public void draw(Graphics2D g2d) 
+    {
+
+        Rectangle2D.Double square = new Rectangle2D.Double(x,y,size,size);
+
+        g2d.setColor(Color.green);
+        g2d.fill(square);
+
+    }
+ 
+
 }

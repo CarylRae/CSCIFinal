@@ -25,14 +25,14 @@ public class SnakeHead extends Player {
 
     }
 
-    public void draw(Graphics2D g2d) {
+    /* public void drawSnakeHead(Graphics2D g2d) {
 
         Rectangle2D.Double head = new Rectangle2D.Double(x,y,size,size);
 
         g2d.setColor(Color.RED);
         g2d.fill(head);
 
-    }
+    } */
 
     /* public void move(){
         int speed = 2;
