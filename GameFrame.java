@@ -21,7 +21,7 @@ public class GameFrame extends JFrame{
     {
         width = w;
         height = h;
-        
+
         /* up = false; //will become ! when up key is clicked
         down = false;
         left = false;
@@ -30,26 +30,9 @@ public class GameFrame extends JFrame{
 
     public void setUpGUI(){
         /* int w = 843;
-        int h = 675; 
+        int h = 675;
 
         JFrame f = new JFrame(); // this is now being created in the starter */
-
-       /*  this.setTitle("Final Project - Abarico, Michelle Kim - Chan, Caryl Rae 221503");
-        cp = this.getContentPane(); 
-        cp.setFocusable(true); */ //MAY be commented out as irrelevant
-        //JPanel p = new JPanel(); //commented out as unused
-        //cp.add(dc, BorderLayout.CENTER); // game at center (for what?)
-
-        /* cp.add(gc);
-
-        gc = new GameCanvas(width,height);
-        gc.startAnimation(); */
-        
-        
-
-        /* pack();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true); */
 
         cp = this.getContentPane();
         this.setTitle("Final Project - Abarico, Michelle Kim - Chan, Caryl Rae 221503");
@@ -178,11 +161,8 @@ public class GameFrame extends JFrame{
             }catch(IOException iox){
                 System.out.println("IOException from WTS run()");
             }
-
         }
     }
-
-
 
     public void connectToServer()
     {
@@ -191,7 +171,7 @@ public class GameFrame extends JFrame{
             DataInputStream in = new DataInputStream(socket.getInputStream());
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
             playerID = in.readInt();
-            
+
             if (playerID == 1)
             {
                 System.out.println("You are Adam. Escape through the other end of the maze without being caught by the Snake.");
@@ -202,11 +182,9 @@ public class GameFrame extends JFrame{
             wtsRunnable = new WriteToServer(out);
             rfsRunnable.waitForStartMsg();
 
-        }catch (IOException iox){
+        }
+        catch (IOException iox){
             System.out.println("IOException from connectToServer()");
         }
-
     }
-
-    
 }
