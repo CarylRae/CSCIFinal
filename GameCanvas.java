@@ -55,24 +55,24 @@ public class GameCanvas extends JComponent{
     }
 
     public void collisionDetection (Player p){
-        double adj = 3.5;
+        double adjust = 3.5;
 
         for(MazeBlock block : canvasMaze)//if(player touching wall)
         {
             if(p.isColliding(block)){
                 if(p.getUp()){
-                    p.setY(p.getY()+adj);
+                    p.setY(p.getY()+adjust);
                 }
                 else if(p.getDown()){
-                    p.setY(p.getY() -adj);
+                    p.setY(p.getY() -adjust);
                 }
 
                 else if(p.getRight()){
-                    p.setX(p.getX()-adj);
+                    p.setX(p.getX()-adjust);
                 }
 
                 else if(p.getLeft()){
-                    p.setX(p.getX() + adj);
+                    p.setX(p.getX() + adjust);
                 }
 
                 p.setDirection("stop");
@@ -88,7 +88,7 @@ public class GameCanvas extends JComponent{
                 collisionDetection(adam);
                 collisionDetection(head);
                 adam.move(1);
-                head.move(2);
+                head.move(1);
             
                 repaint();
             }

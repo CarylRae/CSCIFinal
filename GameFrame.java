@@ -161,6 +161,7 @@ public class GameFrame extends JFrame{
 
                 readThread.start();
                 writeThread.start();
+
             }catch(IOException iox){
                 System.out.println("IOException from waitForStartMsg()");
             }
@@ -185,6 +186,7 @@ public class GameFrame extends JFrame{
                         dataOut.writeDouble(me.getY());
                         dataOut.flush();
                     }
+
                     try{
                         Thread.sleep(25);
                     }catch(InterruptedException ix){
@@ -197,6 +199,5 @@ public class GameFrame extends JFrame{
             }
         }
     }
-
     
 }
