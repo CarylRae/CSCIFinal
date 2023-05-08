@@ -35,10 +35,10 @@ public class GameFrame extends JFrame{
         JFrame f = new JFrame(); // this is now being created in the starter */
 
         cp = this.getContentPane();
-        this.setTitle("Final Project - Abarico, Michelle Kim - Chan, Caryl Rae 221503");
+        this.setTitle("Player #" + playerID + " | Final Project - Abarico, Michelle - Chan, Caryl 221503");
         cp.setPreferredSize(new Dimension(width,height));
 
-        //createSprites();
+        createPlayers();
 
         gc = new GameCanvas(width,height);
         cp.add(gc);
@@ -48,6 +48,17 @@ public class GameFrame extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
         this.setVisible(true);
+    }
+
+    private void createPlayers(){
+        if(playerID == 1){
+            me = new Player(419,550,10);
+            enemy = new Player(416.5,315.5,10);
+
+        } else if (playerID == 2) {
+            enemy = new Player(419,550,10);
+            me = new Player(416.5,315.5,10);
+        }
     }
 
     //this might belong in player class
