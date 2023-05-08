@@ -27,7 +27,7 @@ public class GameCanvas extends JComponent{
         MZ = new MazeSkeleton(width);
         canvasMaze = MZ.buildMaze(); // Lamberlain V. Muli helped here
         adam = new Adam(419,550,10);
-        head = new SnakeHead(416.5,315.5,10);
+        head = new SnakeHead(416.5,300.5,10);
 
         snakeBody = new SnakeBody(head);
 
@@ -56,28 +56,28 @@ public class GameCanvas extends JComponent{
         snakeBody.draw(g2d);
     }
 
-    public void collisionDetection (){
+    public void collisionDetection (Player p){
         double adj = 3.5;
 
         for(MazeBlock block : canvasMaze)//if(player touching wall)
         {
-            if(adam.isColliding(block)){
-                if(adam.getUp()){
-                    adam.setY(adam.getY()+adj);
+            if(p.isColliding(block)){
+                if(p.getUp()){
+                    p.setY(p.getY()+adj);
                 }
-                else if(adam.getDown()){
-                    adam.setY(adam.getY() -adj);
-                }
-
-                else if(adam.getRight()){
-                    adam.setX(adam.getX()-adj);
+                else if(p.getDown()){
+                    p.setY(p.getY() -adj);
                 }
 
-                else if(adam.getLeft()){
-                    adam.setX(adam.getX() + adj);
+                else if(p.getRight()){
+                    p.setX(p.getX()-adj);
                 }
 
-                adam.setDirection("stop");
+                else if(p.getLeft()){
+                    p.setX(p.getX() + adj);
+                }
+
+                p.setDirection("stop");
             }
         }
     }
@@ -87,8 +87,11 @@ public class GameCanvas extends JComponent{
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                adam.move(2);
-                collisionDetection();
+                collisionDetection(adam);
+                collisionDetection(head);
+                adam.move(1);
+                head.move(2);
+            
                 repaint();
             }
 
@@ -99,6 +102,10 @@ public class GameCanvas extends JComponent{
 
     public Adam getAdam(){
         return adam;
+    }
+
+    public SnakeHead getSnakeHead(){
+        return head;
     }
 
     public void addXCoordinate(double x) {

@@ -8,8 +8,8 @@ import java.net.*;
 
 public class GameFrame extends JFrame{
 
-    private GameCanvas gc;
-    private Container cp; //contentpane
+    private GameCanvas gc; //GameCanvas
+    private Container cp; //ContentPane
     private int width, height;
     private Socket socket;
     private int playerID;
@@ -21,21 +21,19 @@ public class GameFrame extends JFrame{
     {
         width = w;
         height = h;
-
-        /* up = false; //will become ! when up key is clicked
-        down = false;
-        left = false;
-        right = false; */
     }
 
     public void setUpGUI(){
-        /* int w = 843;
-        int h = 675;
-
-        JFrame f = new JFrame(); // this is now being created in the starter */
-
+      
         cp = this.getContentPane();
-        this.setTitle("Player #" + playerID + " | Final Project - Abarico, Michelle - Chan, Caryl 221503");
+
+        if (playerID == 1){
+            this.setTitle("Adam | Final Project - Abarico, Michelle - Chan, Caryl 221503");
+        }
+        else{
+            this.setTitle("Snake | Final Project - Abarico, Michelle - Chan, Caryl 221503");
+        }
+
         cp.setPreferredSize(new Dimension(width,height));
 
         createPlayers();
@@ -52,16 +50,15 @@ public class GameFrame extends JFrame{
 
     private void createPlayers(){
         if(playerID == 1){
-            me = new Player(419,550,10);
-            enemy = new Player(416.5,315.5,10);
+            me = new Adam(419,550,10);
+            enemy = new SnakeHead(416.5,300.5,10);
 
-        } else if (playerID == 2) {
-            enemy = new Player(419,550,10);
-            me = new Player(416.5,315.5,10);
+        } else {
+            enemy = new Adam(419,550,10);
+            me = new SnakeHead(416.5,300.5,10);
         }
     }
 
-    //this might belong in player class
     public void addKeyBindings() {
 
         gc.setFocusable(true);
@@ -82,7 +79,6 @@ public class GameFrame extends JFrame{
         im.put(KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0, false), "stop");
     }
 
-    //see line 70 comment
     private class MoveAction extends AbstractAction {
         private String direction;
 
@@ -92,10 +88,37 @@ public class GameFrame extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            gc.getAdam().setDirection(direction);
+            if (playerID == 1){
+                gc.getAdam().setDirection(direction);
+            }else{
+                gc.getSnakeHead().setDirection(direction);
+            }
         }
     }
 
+    public void connectToServer()
+    {
+        try{
+            socket = new Socket("localhost",45371);
+            DataInputStream in = new DataInputStream(socket.getInputStream());
+            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+            playerID = in.readInt();
+
+            if (playerID == 1)
+            {
+                System.out.println("You are Adam. Escape through the other end of the maze without being caught by the Snake.");
+                System.out.println("Waking up the serpent...");
+            }
+
+            rfsRunnable = new ReadFromServer(in);
+            wtsRunnable = new WriteToServer(out);
+            rfsRunnable.waitForStartMsg();
+
+        }
+        catch (IOException iox){
+            System.out.println("IOException from connectToServer()");
+        }
+    }
 
     private class ReadFromServer implements Runnable{
         private DataInputStream dataIn;
@@ -175,27 +198,5 @@ public class GameFrame extends JFrame{
         }
     }
 
-    public void connectToServer()
-    {
-        try{
-            socket = new Socket("localhost",45372);
-            DataInputStream in = new DataInputStream(socket.getInputStream());
-            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-            playerID = in.readInt();
-
-            if (playerID == 1)
-            {
-                System.out.println("You are Adam. Escape through the other end of the maze without being caught by the Snake.");
-                System.out.println("Waking up the serpent...");
-            }
-
-            rfsRunnable = new ReadFromServer(in);
-            wtsRunnable = new WriteToServer(out);
-            rfsRunnable.waitForStartMsg();
-
-        }
-        catch (IOException iox){
-            System.out.println("IOException from connectToServer()");
-        }
-    }
+    
 }

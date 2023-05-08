@@ -12,7 +12,8 @@ public class GameServer {
     private ReadFromClient snakeReadRunnable;
     private WriteToClient adamWriteRunnable;
     private WriteToClient snakeWriteRunnable;
-    private double p1x,p1y,p2x,p2y;
+    private double adamX,adamY,snakeX,snakeY;
+    //private double p1x,p1y,p2x,p2y;
 
     public GameServer()
     {
@@ -20,9 +21,15 @@ public class GameServer {
         numPlayers = 0;
         maxPlayers = 2;
 
+        //Starting position of players
+        adamX = 419;
+        adamY = 550;
+        snakeX = 416.5;
+        snakeY = 300.5;
+
 
         try{
-            ss = new ServerSocket(45372);
+            ss = new ServerSocket(45371);
         }catch (IOException iox){
             System.out.println("IOException from GameServer constructor");
         }
@@ -43,7 +50,11 @@ public class GameServer {
                 out.writeInt(numPlayers); //send the current number of players to the player
                 //out.flush();
 
-                System.out.println("Player #" + numPlayers + " has connected.");
+                if (numPlayers == 1){
+                    System.out.println("Adam has connected.");
+                } else {
+                    System.out.println("Snake has connected.");
+                }
 
                 ReadFromClient rfc = new ReadFromClient(numPlayers,in);
                 WriteToClient wtc = new WriteToClient(numPlayers,out);
@@ -62,14 +73,16 @@ public class GameServer {
 
                     //Send start message to both players that both are connected
                     adamWriteRunnable.sendStartMsg();
-                    adamWriteRunnable.sendStartMsg();
+                    snakeWriteRunnable.sendStartMsg();
 
-                    //start the threads to start sending data
+                    //start the threads to start receiving data
                     Thread adamReadThread = new Thread(adamReadRunnable);
                     Thread snakeReadThread = new Thread(snakeReadRunnable);
                     adamReadThread.start();
                     snakeReadThread.start();
 
+                    
+                    //start the threads to start sending data
                     Thread adamWriteThread = new Thread(adamWriteRunnable);
                     Thread snakeWriteThread = new Thread(snakeWriteRunnable);
                     adamWriteThread.start();
@@ -95,7 +108,13 @@ public class GameServer {
         {
             playerID = pid;
             dataIn = in;
-            System.out.println("RFC" + playerID + " Runnable created.");
+
+            if (numPlayers == 1){
+                System.out.println("RFC Adam Runnable created.");
+
+            } else {
+                System.out.println("RFC Snake Runnable created.");
+            }
 
         }
 
@@ -105,11 +124,11 @@ public class GameServer {
                 {
                     if(playerID==1)
                     { //FOR REWRITING
-                        p1x = dataIn.readDouble();
-                        p1y = dataIn.readDouble();
+                        adamX = dataIn.readDouble();
+                        adamY = dataIn.readDouble();
                     } else{
-                        p2x = dataIn.readDouble();
-                        p2y = dataIn.readDouble();
+                        snakeX = dataIn.readDouble();
+                        snakeY = dataIn.readDouble();
                     }
                 }
             }catch(IOException iox){
@@ -127,7 +146,12 @@ public class GameServer {
         {
             playerID = pid;
             dataOut = out;
-            System.out.println("WTC" + playerID + " Runnable created.");
+            if (numPlayers == 1){
+                System.out.println("WTC Adam Runnable created.");
+
+            } else {
+                System.out.println("WTC Snake Runnable created.");
+            }
 
         }
 
@@ -138,12 +162,12 @@ public class GameServer {
                 {
                     if(playerID==1)
                     {
-                        dataOut.writeDouble(p2x);
-                        dataOut.writeDouble(p2y);
+                        dataOut.writeDouble(snakeX);
+                        dataOut.writeDouble(snakeY);
                         dataOut.flush();
                     } else{
-                        dataOut.writeDouble(p1x);
-                        dataOut.writeDouble(p1y);
+                        dataOut.writeDouble(adamX);
+                        dataOut.writeDouble(adamY);
                         dataOut.flush();
                     }
                     try{
