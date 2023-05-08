@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 
 public class MazeSkeleton {
@@ -57,7 +58,7 @@ public class MazeSkeleton {
         h13 = new HRectangle(MAZE_EDGE_X+15*C,MAZE_EDGE_Y+(29*C),C*9); // bottom right border
         h14 = new HRectangle(MAZE_EDGE_X+15*C,MAZE_EDGE_Y+(26*C),C*7); // bottom right inner border
         h15 = new HRectangle(MAZE_EDGE_X+19*C,MAZE_EDGE_Y+(17*C),C*3);
-        h16 = new HRectangle(MAZE_EDGE_X+20*C,MAZE_EDGE_Y+(15*C),C*2);
+        h16 = new HRectangle(MAZE_EDGE_X+20*C,MAZE_EDGE_Y+(14*C),C*2);
 
         //INSIDES OF MAZE, w ---> walls
         w1 = new HRectangle(MAZE_EDGE_X + (4*C),MAZE_EDGE_Y+(5*C),2*C);
@@ -84,7 +85,7 @@ public class MazeSkeleton {
         w17 = new VRectangle(MAZE_EDGE_X + (16*C),MAZE_EDGE_Y+(15*C),3*C);
 
         w18 = new HRectangle(MAZE_EDGE_X + (4*C),MAZE_EDGE_Y+(19*C),3*C);
-        w19 = new VRectangle(MAZE_EDGE_X + (5.5*C),MAZE_EDGE_Y+(19*C),4*C);
+        w19 = new VRectangle(MAZE_EDGE_X + (5*C),MAZE_EDGE_Y+(19*C),4*C);
         w20 = new HRectangle(MAZE_EDGE_X + (4*C),MAZE_EDGE_Y+(20*C),3*C);
         w21 = new VRectangle(MAZE_EDGE_X + (6*C),MAZE_EDGE_Y+(19*C),4*C);
 
@@ -126,7 +127,7 @@ public class MazeSkeleton {
 
         w45 = new VRectangle(MAZE_EDGE_X + (12*C),MAZE_EDGE_Y+(5*C),2*C);
 
-        w46 = new VRectangle(MAZE_EDGE_X + (12*C),MAZE_EDGE_Y+(2*C),3*C);
+        w46 = new VRectangle(MAZE_EDGE_X + (12*C),MAZE_EDGE_Y+C,3*C);
 
         mazeFramework.add(v1);
         mazeFramework.add(v2);

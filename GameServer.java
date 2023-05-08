@@ -126,6 +126,7 @@ public class GameServer {
                     {
                         adamX = dataIn.readDouble();
                         adamY = dataIn.readDouble();
+                        System.out.println(adamY);
 
                     } else{
                         snakeX = dataIn.readDouble();

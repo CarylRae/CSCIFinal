@@ -140,10 +140,8 @@ public class GameFrame extends JFrame{
 
                     if (enemy != null)
                     {
-                        enemy.setX(enemyX);
-                        System.out.println("updating x to: " + enemyX);
-                        enemy.setY(enemyY);
-                        System.out.println("updating y to: " + enemyY);
+                        enemy.setX(dataIn.readDouble());
+                        enemy.setY(dataIn.readDouble());
 
                     }
                 }
