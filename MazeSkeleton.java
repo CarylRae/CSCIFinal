@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class MazeSkeleton {
 
     private final int C; //constant width 15 to maintain square grid
-    private final int MAZE_EDGE_X; 
+    private final int MAZE_EDGE_X;
     private final int MAZE_EDGE_Y;
     private ArrayList<MazeBlock> mazeFramework;
     private VRectangle v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16; // walls
@@ -18,46 +18,46 @@ public class MazeSkeleton {
         MAZE_EDGE_Y = 108;
 
         //vertical lines
-        v1 = new VRectangle(MAZE_EDGE_X,MAZE_EDGE_Y,C*14);
+        v1 = new VRectangle(MAZE_EDGE_X,MAZE_EDGE_Y,C*30); // left wall
         v2 = new VRectangle(MAZE_EDGE_X+C*10,MAZE_EDGE_Y,C*4);
-        v3 = new VRectangle(MAZE_EDGE_X+2*C,MAZE_EDGE_Y+(3*C),C*8);
+        v3 = new VRectangle(MAZE_EDGE_X+2*C,MAZE_EDGE_Y+(3*C),C*15); // inner left wall
         v4 = new VRectangle(MAZE_EDGE_X+6*C,MAZE_EDGE_Y+(10*C),C*4);
 
-        v5 = new VRectangle(MAZE_EDGE_X+C*24,MAZE_EDGE_Y,C*14);
+        v5 = new VRectangle(MAZE_EDGE_X+C*24,MAZE_EDGE_Y,C*30); // right wall
         v6 = new VRectangle(MAZE_EDGE_X+C*14,MAZE_EDGE_Y,C*4);
-        v7 = new VRectangle(MAZE_EDGE_X+22*C,MAZE_EDGE_Y+(3*C),C*8);
+        v7 = new VRectangle(MAZE_EDGE_X+22*C,MAZE_EDGE_Y+(3*C),C*15); // inner right wall
         v8 = new VRectangle(MAZE_EDGE_X+18*C,MAZE_EDGE_Y+(10*C),C*4);
 
         v9 = new VRectangle(MAZE_EDGE_X,MAZE_EDGE_Y+(C*15),C*15);
-        v10 = new VRectangle(MAZE_EDGE_X+C*10,MAZE_EDGE_Y+C*26,C*4);
+        v10 = new VRectangle(MAZE_EDGE_X+C*10,MAZE_EDGE_Y+C*26,C*4); // bottom left vertical gate
         v11 = new VRectangle(MAZE_EDGE_X+2*C,MAZE_EDGE_Y+(17*C),C*10);
         v12 = new VRectangle(MAZE_EDGE_X+6*C,MAZE_EDGE_Y+(15*C),C*3);
 
         v13 = new VRectangle(MAZE_EDGE_X+C*24,MAZE_EDGE_Y+(C*15),C*15);
-        v14 = new VRectangle(MAZE_EDGE_X+C*14,MAZE_EDGE_Y+C*26,C*4);
+        v14 = new VRectangle(MAZE_EDGE_X+C*14,MAZE_EDGE_Y+C*26,C*4); // bottom right vertical gate
         v15 = new VRectangle(MAZE_EDGE_X+22*C,MAZE_EDGE_Y+(17*C),C*10);
         v16 = new VRectangle(MAZE_EDGE_X+18*C,MAZE_EDGE_Y+(15*C),C*3);
 
         //horizontal lines
         h1 = new HRectangle(MAZE_EDGE_X+C,MAZE_EDGE_Y,C*9);
-        h2 = new HRectangle(MAZE_EDGE_X+3*C,MAZE_EDGE_Y+(3*C),C*7);
-        h3 = new HRectangle(MAZE_EDGE_X+3*C,MAZE_EDGE_Y+(10*C),C*3);
-        h4 = new HRectangle(MAZE_EDGE_X+C,MAZE_EDGE_Y+(13*C),C*5);
+        h2 = new HRectangle(MAZE_EDGE_X+3*C,MAZE_EDGE_Y+(3*C),C*7); // inner upper left border
+        h3 = new HRectangle(MAZE_EDGE_X+4*C,MAZE_EDGE_Y+(10*C),C*4);
+        h4 = new HRectangle(MAZE_EDGE_X+C*2,MAZE_EDGE_Y+(13*C),C*3);
 
         h5 = new HRectangle(MAZE_EDGE_X+15*C,MAZE_EDGE_Y,C*9);
-        h6 = new HRectangle(MAZE_EDGE_X+15*C,MAZE_EDGE_Y+(3*C),C*7);
-        h7 = new HRectangle(MAZE_EDGE_X+19*C,MAZE_EDGE_Y+(10*C),C*3);
-        h8 = new HRectangle(MAZE_EDGE_X+19*C,MAZE_EDGE_Y+(13*C),C*5);
+        h6 = new HRectangle(MAZE_EDGE_X+15*C,MAZE_EDGE_Y+(3*C),C*7); // inner upper right border
+        h7 = new HRectangle(MAZE_EDGE_X+17*C,MAZE_EDGE_Y+(10*C),C*4);
+        h8 = new HRectangle(MAZE_EDGE_X+20*C,MAZE_EDGE_Y+(13*C),C*3);
 
-        h9 = new HRectangle(MAZE_EDGE_X+C,MAZE_EDGE_Y+(29*C),C*9);
-        h10 = new HRectangle(MAZE_EDGE_X+3*C,MAZE_EDGE_Y+(26*C),C*7);
+        h9 = new HRectangle(MAZE_EDGE_X+C,MAZE_EDGE_Y+(29*C),C*9); // bottom left border
+        h10 = new HRectangle(MAZE_EDGE_X+3*C,MAZE_EDGE_Y+(26*C),C*7); // bottom left inner border
         h11 = new HRectangle(MAZE_EDGE_X+3*C,MAZE_EDGE_Y+(17*C),C*3);
-        h12 = new HRectangle(MAZE_EDGE_X+C,MAZE_EDGE_Y+(15*C),C*5);
+        h12 = new HRectangle(MAZE_EDGE_X+C*3,MAZE_EDGE_Y+(14*C),C*2);
 
-        h13 = new HRectangle(MAZE_EDGE_X+15*C,MAZE_EDGE_Y+(29*C),C*9);
-        h14 = new HRectangle(MAZE_EDGE_X+15*C,MAZE_EDGE_Y+(26*C),C*7);
+        h13 = new HRectangle(MAZE_EDGE_X+15*C,MAZE_EDGE_Y+(29*C),C*9); // bottom right border
+        h14 = new HRectangle(MAZE_EDGE_X+15*C,MAZE_EDGE_Y+(26*C),C*7); // bottom right inner border
         h15 = new HRectangle(MAZE_EDGE_X+19*C,MAZE_EDGE_Y+(17*C),C*3);
-        h16 = new HRectangle(MAZE_EDGE_X+19*C,MAZE_EDGE_Y+(15*C),C*5);
+        h16 = new HRectangle(MAZE_EDGE_X+20*C,MAZE_EDGE_Y+(15*C),C*2);
 
         //INSIDES OF MAZE, w ---> walls
         w1 = new HRectangle(MAZE_EDGE_X + (4*C),MAZE_EDGE_Y+(5*C),2*C);
@@ -65,13 +65,14 @@ public class MazeSkeleton {
         w3 = new HRectangle(MAZE_EDGE_X + (7*C),MAZE_EDGE_Y+(5*C),4*C);
         w4 = new HRectangle(MAZE_EDGE_X + (7*C),MAZE_EDGE_Y+(6*C),4*C);
 
+        // blocks at the top area
         w5 = new HRectangle(MAZE_EDGE_X + (14*C),MAZE_EDGE_Y+(5*C),4*C);
         w6 = new HRectangle(MAZE_EDGE_X + (14*C),MAZE_EDGE_Y+(6*C),4*C);
         w7 = new HRectangle(MAZE_EDGE_X + (19*C),MAZE_EDGE_Y+(5*C),2*C);
         w8 = new HRectangle(MAZE_EDGE_X + (19*C),MAZE_EDGE_Y+(6*C),2*C);
 
         w9 = new HRectangle(MAZE_EDGE_X + (4*C),MAZE_EDGE_Y+(8*C),3*C);
-        w10 = new HRectangle(MAZE_EDGE_X + (10*C),MAZE_EDGE_Y+(8*C),5*C);
+        w10 = new HRectangle(MAZE_EDGE_X + (10*C),MAZE_EDGE_Y+(8*C),5*C); // inner center above snake square
         w11 = new HRectangle(MAZE_EDGE_X + (18*C),MAZE_EDGE_Y+(8*C),3*C);
 
         w12 = new VRectangle(MAZE_EDGE_X + (8*C),MAZE_EDGE_Y+(8*C),6*C);
@@ -124,8 +125,8 @@ public class MazeSkeleton {
         w44 = new HRectangle(MAZE_EDGE_X + (21*C),MAZE_EDGE_Y+(22*C),2*C);
 
         w45 = new VRectangle(MAZE_EDGE_X + (12*C),MAZE_EDGE_Y+(5*C),2*C);
-        
-        w46 = new VRectangle(MAZE_EDGE_X + (12*C),MAZE_EDGE_Y+(3*C),3*C);
+
+        w46 = new VRectangle(MAZE_EDGE_X + (12*C),MAZE_EDGE_Y+(2*C),3*C);
 
         mazeFramework.add(v1);
         mazeFramework.add(v2);

@@ -8,5 +8,4 @@ public class GameStarter { //main for players
     
     }
 
-    
 }
