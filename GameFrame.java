@@ -135,13 +135,17 @@ public class GameFrame extends JFrame{
             try{
                 while(true)
                 {
+                    //Read Enemy coordinates from Server
                     double enemyX = dataIn.readDouble();
                     double enemyY = dataIn.readDouble();
 
                     if (enemy != null)
                     {
-                        enemy.setX(dataIn.readDouble());
-                        enemy.setY(dataIn.readDouble());
+                        //Apply enemy coordinates to enemy graphic
+                        enemy.setX(enemyX);
+                        enemy.setY(enemyY);
+                        System.out.println("Applying ENEMY coordinates: " + enemyX + " and " + enemyY); //FOR TESTING
+
 
                     }
                 }
@@ -156,7 +160,6 @@ public class GameFrame extends JFrame{
 
                 String startMsg = dataIn.readUTF();
                 System.out.println("Message from Server: " + startMsg);
-
 
                 Thread readThread = new Thread(rfsRunnable);
                 Thread writeThread = new Thread(wtsRunnable);
@@ -183,12 +186,11 @@ public class GameFrame extends JFrame{
             try{
                 while(true)
                 {
-                    double meX = me.getX();
-                    double meY = me.getY();
-
+                    //Send Player's coordinates to Server
                     if (me != null) {
-                        dataOut.writeDouble(meX);
-                        dataOut.writeDouble(meY);
+                        dataOut.writeDouble( me.getX());
+                        dataOut.writeDouble(me.getY());
+                        System.out.println("Sending MY coordinates: " + me.getX() + " and " + me.getY()); //FOR TESTING
                         dataOut.flush();
                     }
 
