@@ -1,6 +1,3 @@
-//Abarico (22-04-2023)
-
-
 import java.awt.*;
 import java.awt.geom.*;
 
