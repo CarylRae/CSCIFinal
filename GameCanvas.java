@@ -64,17 +64,24 @@ public class GameCanvas extends JComponent{
         {
             if(p.isColliding(block)){
                 if(p.getUp()){
+                    System.out.println(p.getY());
                     p.setY(p.getY()+adjust);
                 }
                 else if(p.getDown()){
+                    System.out.println(p.getY());
+
                     p.setY(p.getY() -adjust);
                 }
 
                 else if(p.getRight()){
+                    System.out.println(p.getX());
+
                     p.setX(p.getX()-adjust);
                 }
 
                 else if(p.getLeft()){
+                    System.out.println(p.getX());
+
                     p.setX(p.getX() + adjust);
                 }
 
@@ -109,7 +116,7 @@ public class GameCanvas extends JComponent{
         return head;
     }
 
-    public void addXCoordinate(double x) {
+    /* public void addXCoordinate(double x) {
         snakeXCoordinates.add(head.getX());
         snakeXCoordinates.add(head.getX());
         snakeXCoordinates.add(head.getX());
@@ -139,6 +146,6 @@ public class GameCanvas extends JComponent{
         snakeYCoordinates.add(head.getY());
         snakeYCoordinates.add(head.getY());
         
-    }
+    } */
 
 }

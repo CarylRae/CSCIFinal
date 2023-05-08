@@ -13,20 +13,12 @@ public class GameServer {
     private WriteToClient adamWriteRunnable;
     private WriteToClient snakeWriteRunnable;
     private double adamX,adamY,snakeX,snakeY;
-    //private double p1x,p1y,p2x,p2y;
 
     public GameServer()
     {
         System.out.println("==== GAME SERVER ====");
         numPlayers = 0;
         maxPlayers = 2;
-
-        //Starting position of players
-        /* adamX = 419;
-        adamY = 550;
-        snakeX = 416.5;
-        snakeY = 300.5;
- */
 
         try{
             ss = new ServerSocket(23000);
@@ -71,7 +63,6 @@ public class GameServer {
                     snakeReadRunnable = rfc;
                     snakeWriteRunnable = wtc;
 
-
                     //Send start message to both players that both are connected
                     adamWriteRunnable.sendStartMsg();
                     snakeWriteRunnable.sendStartMsg();
@@ -82,7 +73,6 @@ public class GameServer {
                     adamReadThread.start();
                     snakeReadThread.start();
 
-                    
                     //start the threads to start sending data
                     Thread adamWriteThread = new Thread(adamWriteRunnable);
                     Thread snakeWriteThread = new Thread(snakeWriteRunnable);
@@ -128,14 +118,14 @@ public class GameServer {
                         //Receiving ADAM coordinates
                         adamX = dataIn.readDouble();
                         adamY = dataIn.readDouble();
-                        System.out.println("Received ADAM Coordinates: " + adamX + " and " + adamY); //FOR TESTING
+                        //System.out.println("Received ADAM Coordinates: " + adamX + " and " + adamY); //FOR TESTING
 
 
                     } else{
                         //Receiving SNAKE coordinates
                         snakeX = dataIn.readDouble();
                         snakeY = dataIn.readDouble();
-                        System.out.println("Received SNAKE Coordinates: " + snakeX + " and " + snakeX); //FOR TESTING
+                        //System.out.println("Received SNAKE Coordinates: " + snakeX + " and " + snakeX); //FOR TESTING
 
 
                     }
@@ -175,14 +165,14 @@ public class GameServer {
                         dataOut.writeDouble(snakeX);
                         dataOut.writeDouble(snakeY);
                         dataOut.flush();
-                        System.out.println("Sending SNAKE to ADAM: " + snakeX + " and " + snakeY); //FOR TESTING
+                        //System.out.println("Sending SNAKE to ADAM: " + snakeX + " and " + snakeY); //FOR TESTING
 
                     } else{
                         //send Adam coordinates to Snake
                         dataOut.writeDouble(adamX);
                         dataOut.writeDouble(adamY);
                         dataOut.flush();
-                        System.out.println("Sending ADAM to SNAKE SUCCESS: " + adamX + " and " + adamY); //FOR TESTING
+                        //System.out.println("Sending ADAM to SNAKE SUCCESS: " + adamX + " and " + adamY); //FOR TESTING
                     }
                     try{
                         Thread.sleep(25);

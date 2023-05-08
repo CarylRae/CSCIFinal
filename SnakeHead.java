@@ -1,3 +1,6 @@
+
+
+
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.util.*;
@@ -115,5 +118,8 @@ public class SnakeHead extends Player {
                 this.y + this.size <= other.getY() ||
                 this.y >= other.getY() + other.getHeight());
     } */
+
+   
+
 
 }

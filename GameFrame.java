@@ -146,7 +146,7 @@ public class GameFrame extends JFrame{
                         enemy.setX(enemyX);
                         enemy.setY(enemyY);
                     
-                        System.out.println("Applying ENEMY coordinates: " + enemyX + " and " + enemyY); //FOR TESTING
+                        //System.out.println("Applying ENEMY coordinates: " + enemyX + " and " + enemyY); //FOR TESTING
 
 
                     }
@@ -192,7 +192,7 @@ public class GameFrame extends JFrame{
                     if (me != null) {
                         dataOut.writeDouble( me.getX());
                         dataOut.writeDouble(me.getY());
-                        System.out.println("Sending MY coordinates: " + me.getX() + " and " + me.getY()); //FOR TESTING
+                        //System.out.println("Sending MY coordinates: " + me.getX() + " and " + me.getY()); //FOR TESTING
                         dataOut.flush();
                     }
 
