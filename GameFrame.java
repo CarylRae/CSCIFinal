@@ -142,8 +142,10 @@ public class GameFrame extends JFrame{
                     if (enemy != null)
                     {
                         //Apply enemy coordinates to enemy graphic
+
                         enemy.setX(enemyX);
                         enemy.setY(enemyY);
+                    
                         System.out.println("Applying ENEMY coordinates: " + enemyX + " and " + enemyY); //FOR TESTING
 
 

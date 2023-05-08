@@ -116,7 +116,4 @@ public class SnakeHead extends Player {
                 this.y >= other.getY() + other.getHeight());
     } */
 
-   
-
-
 }
