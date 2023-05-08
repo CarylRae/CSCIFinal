@@ -12,7 +12,6 @@ public class SnakeHead extends Player {
     private boolean up, down, left, right; */
     
 
-
     public SnakeHead(double x, double y, double size){
         super(x, y, size);
         /* this.x = x;
@@ -23,8 +22,6 @@ public class SnakeHead extends Player {
         this.down = false;
         this.left = false;
         this.right = false; */
-
-        
 
     }
 

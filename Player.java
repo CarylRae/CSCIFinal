@@ -1,10 +1,7 @@
-
-
-
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
-public class Player { //superclass
+public class Player { //superclass of adam & snake
     protected double x;
     protected double y;
     protected double size;
@@ -111,9 +108,5 @@ public class Player { //superclass
                 this.y + this.size <= other.getY() ||
                 this.y >= other.getY() + other.getHeight());
     }
-
-    
-
-
 
 }

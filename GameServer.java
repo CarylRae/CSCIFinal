@@ -19,10 +19,10 @@ public class GameServer {
         System.out.println("==== GAME SERVER ====");
         numPlayers = 0;
         maxPlayers = 2;
-        /* p1x = 100;
-        p1y = 400;
-        p2x = 490;
-        p2y = 400; */
+        /* p1x = 419;
+        p1y = 550;
+        p2x = 416.5;
+        p2y = 315.5; */
 
 
         try{
@@ -78,7 +78,6 @@ public class GameServer {
                     Thread snakeWriteThread = new Thread(snakeWriteRunnable);
                     adamWriteThread.start();
                     snakeWriteThread.start();
-
 
                 }
 
