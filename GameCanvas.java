@@ -51,6 +51,7 @@ public class GameCanvas extends JComponent{
             block.draw(g2d);
         }
 
+        f.getMazeImage().paintIcon(this,g2d,0,0);
         //draw adam
         f.getMe().draw(g2d);
         f.getEnemy().draw(g2d);

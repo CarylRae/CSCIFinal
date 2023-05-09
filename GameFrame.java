@@ -50,7 +50,7 @@ public class GameFrame extends JFrame{
         createPlayers();
 
         gc = new GameCanvas(width,height,this);
-        gc.add(mazeLabel);
+        //gc.add(mazeLabel);
         
         cp.add(gc);
         gc.startAnimation();
@@ -61,7 +61,9 @@ public class GameFrame extends JFrame{
         this.setVisible(true);
     }
 
-    
+    public ImageIcon getMazeImage(){
+        return mazeImage;
+    }
 
     private void createPlayers(){
         if(playerID == 1){ //For editing: Adam coordinates are not centered
