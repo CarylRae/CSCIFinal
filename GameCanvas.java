@@ -54,7 +54,7 @@ public class GameCanvas extends JComponent{
         // graphic of maze
         f.getMazeImage().paintIcon(this,g2d,0,0);
 
-        //draw adam
+        //draw characters
         f.getMe().draw(g2d);
         f.getEnemy().draw(g2d);
         //snakeBody.draw(g2d);

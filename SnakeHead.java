@@ -12,7 +12,9 @@ public class SnakeHead extends Player {
     private boolean up, down, left, right; */
     
 
+    //public SnakeHead(double x, double y, double size, String myImage){
     public SnakeHead(double x, double y, double size){
+        //super(x, y, size, "snakehead.png");
         super(x, y, size);
         /* this.x = x;
         this.y = y;

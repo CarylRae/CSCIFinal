@@ -1,12 +1,16 @@
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
+import javax.swing.*;
 
 public class Player { //superclass of adam & snake
     protected double x;
     protected double y;
     protected double size;
     protected boolean up, down, left, right;
+    // private String myImage;
+    // private ImageIcon image;
 
+    //public Player(double x, double y, double size, String myImage){
     public Player(double x, double y, double size){
         this.x = x;
         this.y = y;
@@ -15,6 +19,7 @@ public class Player { //superclass of adam & snake
         this.down = false;
         this.left = false;
         this.right = false;
+        // this.myImage = myImage;
     }
 
     public void move(int speed){
@@ -101,13 +106,22 @@ public class Player { //superclass of adam & snake
 
     public void draw(Graphics2D g2d) 
     {
-
+    
         Rectangle2D.Double square = new Rectangle2D.Double(x,y,size,size);
 
-        g2d.setColor(Color.green);
-        g2d.fill(square);
+        //g2d.setColor(Color.green); 
+        //g2d.fill(square);
 
     }
+
+    // public ImageIcon getImage() {
+        
+    //     myImage = "\"" + myImage + ".png\"";
+    //     image = new ImageIcon(this.getClass().getResource(myImage));
+        
+    //     return image;
+    // }
+
  
 
 }

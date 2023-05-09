@@ -68,10 +68,15 @@ public class GameFrame extends JFrame{
     private void createPlayers(){
         if(playerID == 1){ //For editing: Adam coordinates are not centered
             me = new Adam(419,550,10);
+            //me = new Adam(419,550,10, "adam.png");
             enemy = new SnakeHead(416.5,300.5,10);
+            //enemy = new SnakeHead(416.5,300.5,10, "snake.png");
         } else {
             enemy = new Adam(419,550,10);
+            //enemy = new Adam(419,550,10,"adam.png");
+
             me = new SnakeHead(416.5,300.5,10);
+            //me = new SnakeHead(416.5,300.5,10, "snake.png");
         }
     }
 

@@ -21,8 +21,10 @@ public class Adam extends Player{
 
     } */
 
+    //public Adam(double x, double y, double size, String myImage){
     public Adam(double x, double y, double size){
         super(x, y, size);
+        //super(x, y, size, "adam.png");
     }
  
     /* public void drawAdam(Graphics2D g2d) 
