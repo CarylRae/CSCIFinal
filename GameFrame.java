@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
 import java.io.*;
 import java.net.*;
 
@@ -16,10 +15,10 @@ public class GameFrame extends JFrame{
     private ReadFromServer rfsRunnable;
     private WriteToServer wtsRunnable;
     private Player me, enemy;
+    private SnakeBody body;
 
     private ImageIcon mazeImage;
     private JLabel mazeLabel;
-
 
     public GameFrame(int w, int h)
     {
@@ -32,7 +31,6 @@ public class GameFrame extends JFrame{
         mazeLabel.setBounds(0,0,w,h);
     
     }
-
 
     public void setUpGUI(){
       
@@ -50,11 +48,9 @@ public class GameFrame extends JFrame{
         createPlayers();
 
         gc = new GameCanvas(width,height,this);
-        //gc.add(mazeLabel);
         
         cp.add(gc);
         gc.startAnimation();
-        //cp.setFocusable(true);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
@@ -68,15 +64,13 @@ public class GameFrame extends JFrame{
     private void createPlayers(){
         if(playerID == 1){ //For editing: Adam coordinates are not centered
             me = new Adam(419,550,10);
-            //me = new Adam(419,550,10, "adam.png");
-            enemy = new SnakeHead(416.5,300.5,10);
-            //enemy = new SnakeHead(416.5,300.5,10, "snake.png");
+            enemy = new SnakeHead(417,301,10);
+            body = new SnakeBody(enemy);
+
         } else {
             enemy = new Adam(419,550,10);
-            //enemy = new Adam(419,550,10,"adam.png");
-
-            me = new SnakeHead(416.5,300.5,10);
-            //me = new SnakeHead(416.5,300.5,10, "snake.png");
+            me = new SnakeHead(417,301,10);
+            body = new SnakeBody(me);
         }
     }
 
@@ -88,6 +82,11 @@ public class GameFrame extends JFrame{
     public Player getEnemy()
     {
         return enemy;
+    }
+
+    public SnakeBody getBody()
+    {
+        return body;
     }
 
     public void addKeyBindings() {
@@ -120,6 +119,7 @@ public class GameFrame extends JFrame{
         @Override
         public void actionPerformed(ActionEvent ae) {
                 me.setDirection(direction);
+                body.setDirection(direction);
             }
             
     }
@@ -173,9 +173,6 @@ public class GameFrame extends JFrame{
 
                         enemy.setX(enemyX);
                         enemy.setY(enemyY);
-                    
-                        //System.out.println("Applying ENEMY coordinates: " + enemyX + " and " + enemyY); //FOR TESTING
-
 
                     }
                 }

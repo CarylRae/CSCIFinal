@@ -1,6 +1,3 @@
-
-
-
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.util.*;
@@ -11,14 +8,14 @@ public class SnakeHead extends Player {
     private double size;
     private boolean up, down, left, right; */
 
-    private Rectangle2D.Double s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12,s13;
+    //private Rectangle2D.Double s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12,s13;
 
-    private int snakeX[] = new int[15];
-    private int snakeY[] = new int[15];
+    // private int snakeX[] = new int[30];
+    // private int snakeY[] = new int[30];
     
 
     //public SnakeHead(double x, double y, double size, String myImage){
-    public SnakeHead(double x, double y, double size){
+    public SnakeHead(int x, int y, int size){
         //super(x, y, size, "snakehead.png");
         super(x, y, size);
 
@@ -33,142 +30,105 @@ public class SnakeHead extends Player {
 
     }
 
-    public void drawSnakeHead(Graphics2D g2d) {
+    //public void draw(Graphics2D g2d) {
 
-        s1 = new Rectangle2D.Double(x,y,size,size);
-        s2 = new Rectangle2D.Double(x,y,size,size);
-        s3 = new Rectangle2D.Double(x,y,size,size);
-        s4 = new Rectangle2D.Double(x,y,size,size);
-        s5 = new Rectangle2D.Double(x,y,size,size);
-        s6 = new Rectangle2D.Double(x,y,size,size);
-        s7 = new Rectangle2D.Double(x,y,size,size);
-        s8 = new Rectangle2D.Double(x,y,size,size);
-        s9 = new Rectangle2D.Double(x,y,size,size);
-        s10 = new Rectangle2D.Double(x,y,size,size);
-        s11 = new Rectangle2D.Double(x,y,size,size);
-        s12 = new Rectangle2D.Double(x,y,size,size);
-        s13 = new Rectangle2D.Double(x,y,size,size);
-
-        for(int i = 0; i<13; i++){
-            if(i==0){
-                g2d.setColor(Color.GREEN);
-                g2d.fill(s1);
-            }
-            else{
-                g2d.setColor(Color.BLUE);
-                g2d.fill(s2);
-                g2d.fill(s3);
-                g2d.fill(s4);
-                g2d.fill(s5);
-                g2d.fill(s6);
-                g2d.fill(s7);
-                g2d.fill(s8);
-                g2d.fill(s9);
-                g2d.fill(s10);
-                g2d.fill(s11);
-                g2d.fill(s12);
-                g2d.fill(s13);
-            }
-        }
+        // s1 = new Rectangle2D.Double(snakeX[0],snakeY[0],size,size);
+        // s2 = new Rectangle2D.Double(snakeX[1],snakeY[1],size,size);
+        // s3 = new Rectangle2D.Double(snakeX[2],snakeY[2],size,size);
+        // s4 = new Rectangle2D.Double(snakeX[3],snakeY[3],size,size);
+        // s5 = new Rectangle2D.Double(snakeX[4],snakeY[4],size,size);
+        // s6 = new Rectangle2D.Double(snakeX[5],snakeY[5],size,size);
+        // s7 = new Rectangle2D.Double(snakeX[6],snakeY[6],size,size);
+        // s8 = new Rectangle2D.Double(snakeX[7],snakeY[7],size,size);
+        // s9 = new Rectangle2D.Double(snakeX[8],snakeY[8],size,size);
+        // s10 = new Rectangle2D.Double(snakeX[9],snakeY[9],size,size);
+        // s11 = new Rectangle2D.Double(snakeX[10],snakeY[10],size,size);
+        // s12 = new Rectangle2D.Double(snakeX[11],snakeY[11],size,size);
+        // s13 = new Rectangle2D.Double(snakeX[12],snakeY[12],size,size);
 
     }
 
-    /* public void move(){
-        int speed = 2;
+    // public void move(){
+    //     int speed = 2;
 
-        if(up) {
-            y -= speed;
-        } else if(down) {
-            y += speed;
-        } else if(left) {
-            x -= speed;
-        } else if(right) {
-            x += speed;
-        }
-    }
+    //     if(up) {
+    //         y -= speed;
+    //     } else if(down) {
+    //         y += speed;
+    //     } else if(left) {
+    //         x -= speed;
+    //     } else if(right) {
+    //         x += speed;
+    //     }
+    // }
 
-    public double getX(){
-        return x;
-    }
+    // public double getX(){
+    //     return x;
+    // }
 
-    public double getY(){
-        return y;
-    }
+    // public double getY(){
+    //     return y;
+    // }
 
-    public double getSize(){
-        return size;
-    }
+    // public double getSize(){
+    //     return size;
+    // }
 
-    public boolean getUp(){
-        return up;
-    }
-    public boolean getDown(){
-        return down;
-    }
-    public boolean getRight(){
-        return right;
-    }
-    public boolean getLeft(){
-        return left;
-    }
-    public void setX(double n){
-        x=n;
-    }
+    // public boolean getUp(){
+    //     return up;
+    // }
+    // public boolean getDown(){
+    //     return down;
+    // }
+    // public boolean getRight(){
+    //     return right;
+    // }
+    // public boolean getLeft(){
+    //     return left;
+    // }
+    // public void setX(double n){
+    //     x=n;
+    // }
 
-    public void setY(double m){
-        y=m;
-    }
+    // public void setY(double m){
+    //     y=m;
+    // }
 
-    */
 
-    public void setDirection(String dir) {
-        for(int i = 13; i>0; i--){
-            snakeX[i] = snakeX[i-1];
-            snakeY[i] = snakeY[i-1];
-        }
-        
-        if(dir.equals("up")) {
-            up = true;
-            down = false;
-            left = false;
-            right = false;
+    // public void setDirection(String dir) {
+    //     
+    //     if(dir.equals("up")) {
+    //         up = true;
+    //         down = false;
+    //         left = false;
+    //         right = false;
 
-            snakeY[0] -= 2;
+    //     } else if (dir.equals("down")) {
+    //         up = false;
+    //         down = true;
+    //         left = false;
+    //         right = false;
 
-        } else if (dir.equals("down")) {
-            up = false;
-            down = true;
-            left = false;
-            right = false;
+    //     } else if (dir.equals("left")) {
+    //         up = false;
+    //         down = false;
+    //         left = true;
+    //         right = false;
 
-            snakeY[0] += 2;
+    //     } else if (dir.equals("right")) {
+    //         up = false;
+    //         down = false;
+    //         left = false;
+    //         right = true;
 
-        } else if (dir.equals("left")) {
-            up = false;
-            down = false;
-            left = true;
-            right = false;
+    //     } else {
+    //         up = false;
+    //         down = false;
+    //         left = false;
+    //         right = false;
+    //     }
+    // }
 
-            snakeX[0] -= 2;
-
-        } else if (dir.equals("right")) {
-            up = false;
-            down = false;
-            left = false;
-            right = true;
-
-            snakeX[0] += 2;
-
-        } else {
-            up = false;
-            down = false;
-            left = false;
-            right = false;
-        }
-    }
- 
-
- //I suspect this shall be overridden later with method with more conditions
  
     /* public boolean isColliding(MazeBlock other) {
         return!(this.x + this.size <= other.getX() ||
@@ -177,7 +137,5 @@ public class SnakeHead extends Player {
                 this.y >= other.getY() + other.getHeight());
     } */
 
-   
 
-
-}
+//}

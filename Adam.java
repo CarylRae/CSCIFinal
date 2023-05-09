@@ -21,8 +21,7 @@ public class Adam extends Player{
 
     } */
 
-    //public Adam(double x, double y, double size, String myImage){
-    public Adam(double x, double y, double size){
+    public Adam(int x, int y, int size){
         super(x, y, size);
         //super(x, y, size, "adam.png");
     }
@@ -118,9 +117,5 @@ public class Adam extends Player{
                 this.y + this.size <= other.getY() ||
                 this.y >= other.getY() + other.getHeight());
     } */
-
-    
-
-
 
 }

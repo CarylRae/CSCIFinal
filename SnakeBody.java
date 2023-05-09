@@ -9,12 +9,17 @@ public class SnakeBody {
     private double y;
     private double size;
     private boolean up, down, left, right;
-    private Rectangle2D.Double s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12;
 
-    public SnakeBody(SnakeHead h){
+    private double snakeX[] = new double[30];
+    private double snakeY[] = new double[30];
+
+    public SnakeBody(Player h){
         x = h.getX();
         y = h.getY();
         size = h.getSize();
+
+        snakeX[0] = x;
+        snakeY[0] = y;
 
         this.up = false;
         this.down = false;
@@ -25,35 +30,18 @@ public class SnakeBody {
 
     public void draw(Graphics2D g2d) {
 
-        s1 = new Rectangle2D.Double(x,y,size,size);
-        s2 = new Rectangle2D.Double(x,y,size,size);
-        s3 = new Rectangle2D.Double(x,y,size,size);
-        s4 = new Rectangle2D.Double(x,y,size,size);
-        s5 = new Rectangle2D.Double(x,y,size,size);
-        s6 = new Rectangle2D.Double(x,y,size,size);
-        s7 = new Rectangle2D.Double(x,y,size,size);
-        s8 = new Rectangle2D.Double(x,y,size,size);
-        s9 = new Rectangle2D.Double(x,y,size,size);
-        s10 = new Rectangle2D.Double(x,y,size,size);
-        s11 = new Rectangle2D.Double(x,y,size,size);
-        s12 = new Rectangle2D.Double(x,y,size,size);
-
-        
-        g2d.setColor(Color.GREEN);
-        g2d.fill(s1);
-        g2d.fill(s2);
-        g2d.fill(s3);
-        g2d.fill(s4);
-        g2d.fill(s5);
-        g2d.fill(s6);
-        g2d.fill(s7);
-        g2d.fill(s8);
-        g2d.fill(s9);
-        g2d.fill(s10);
-        g2d.fill(s11);
-        g2d.fill(s12);       
-            
-        
+        for (int i = 0; i<29; i++){
+            if(i == 0){
+                Rectangle2D.Double r1 = new Rectangle2D.Double(snakeX[i], snakeY[i], size, size);
+                g2d.setColor(Color.GREEN);
+                g2d.fill(r1);
+            }
+            else{
+                Rectangle2D.Double r1 = new Rectangle2D.Double(snakeX[i], snakeY[i], size, size);
+                g2d.setColor(new Color(45,180,0));
+                g2d.fill(r1);
+            }
+        }
     }
 
     public void move(int speed){
@@ -104,11 +92,18 @@ public class SnakeBody {
 
     public void setDirection(String dir) {
         
+        for(int i = 29; i>0; i--){
+            snakeX[i] = snakeX[i-1];
+            snakeY[i] = snakeY[i-1];
+        }
+        
         if(dir.equals("up")) {
             up = true;
             down = false;
             left = false;
             right = false;
+
+            snakeY[0] -= 10;
 
         } else if (dir.equals("down")) {
             up = false;
@@ -116,17 +111,23 @@ public class SnakeBody {
             left = false;
             right = false;
 
+            snakeY[0] += 10;
+
         } else if (dir.equals("left")) {
             up = false;
             down = false;
             left = true;
             right = false;
 
+            snakeX[0] -= 10;
+
         } else if (dir.equals("right")) {
             up = false;
             down = false;
             left = false;
             right = true;
+
+            snakeX[0] += 10;
 
         } else {
             up = false;

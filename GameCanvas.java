@@ -17,8 +17,6 @@ public class GameCanvas extends JComponent{
 
     private ArrayList<Double> snakeXCoordinates;
     private ArrayList<Double> snakeYCoordinates;
-    private int bodyParts;
-
 
     public GameCanvas(int w, int h, GameFrame frame) {
         width = w;
@@ -32,7 +30,6 @@ public class GameCanvas extends JComponent{
 
         //snakeBody = new SnakeBody(head);
 
-        bodyParts = 13;
         snakeXCoordinates = new ArrayList<Double>();
         snakeYCoordinates = new ArrayList<Double>();
 
@@ -58,7 +55,7 @@ public class GameCanvas extends JComponent{
         //draw characters
         f.getMe().draw(g2d);
         f.getEnemy().draw(g2d);
-        //snakeBody.draw(g2d);
+        f.getBody().draw(g2d);
     }
 
     public void collisionDetection (Player p){
@@ -92,14 +89,14 @@ public class GameCanvas extends JComponent{
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                //collisionDetection(adam);
                 collisionDetection(f.getMe());
                 f.getMe().move(1);
 
+                collisionDetection(f.getEnemy());
                 f.getEnemy().move(1);
-                // head.move(1);
-                // snakeBody.move(1);
-            
+
+                f.getBody().move(1);
+                
                 repaint();
             }
 
@@ -116,36 +113,8 @@ public class GameCanvas extends JComponent{
         return head;
     }
 
-    /* public void addXCoordinate(double x) {
-        snakeXCoordinates.add(head.getX());
-        snakeXCoordinates.add(head.getX());
-        snakeXCoordinates.add(head.getX());
-        snakeXCoordinates.add(head.getX());
-        snakeXCoordinates.add(head.getX());
-        snakeXCoordinates.add(head.getX());
-        snakeXCoordinates.add(head.getX());
-        snakeXCoordinates.add(head.getX());
-        snakeXCoordinates.add(head.getX());
-        snakeXCoordinates.add(head.getX());
-        snakeXCoordinates.add(head.getX());
-        snakeXCoordinates.add(head.getX());
-
-        
+    public SnakeBody getSnakeBody(){
+        return snakeBody;
     }
-
-    public void addYCoordinate(double y) {
-        snakeYCoordinates.add(head.getY());
-        snakeYCoordinates.add(head.getY());
-        snakeYCoordinates.add(head.getY());
-        snakeYCoordinates.add(head.getY());
-        snakeYCoordinates.add(head.getY());
-        snakeYCoordinates.add(head.getY());
-        snakeYCoordinates.add(head.getY());
-        snakeYCoordinates.add(head.getY());
-        snakeYCoordinates.add(head.getY());
-        snakeYCoordinates.add(head.getY());
-        snakeYCoordinates.add(head.getY());
-        
-    } */
 
 }

@@ -5,12 +5,12 @@ import javax.swing.*;
 public class Player { //superclass of adam & snake
     protected double x;
     protected double y;
-    protected double size;
+    protected int size;
     protected boolean up, down, left, right;
-    // private String myImage;
-    // private ImageIcon image;
 
-    public Player(double x, double y, double size){
+    private Rectangle2D.Double s1;
+
+    public Player(double x, double y, int size){
         this.x = x;
         this.y = y;
         this.size = size;
@@ -21,7 +21,6 @@ public class Player { //superclass of adam & snake
     }
 
     public void move(int speed){
-        //int speed = 2;
 
         if(up) {
             y -= speed;
@@ -66,28 +65,32 @@ public class Player { //superclass of adam & snake
         y=n;
     }
 
-    public void setDirection(String dir) {
+    public void setDirection(String dir){ 
         
         if(dir.equals("up")) {
             up = true;
             down = false;
             left = false;
             right = false;
+
         } else if (dir.equals("down")) {
             up = false;
             down = true;
             left = false;
             right = false;
+
         } else if (dir.equals("left")) {
             up = false;
             down = false;
             left = true;
             right = false;
+
         } else if (dir.equals("right")) {
             up = false;
             down = false;
             left = false;
             right = true;
+
         } else {
             up = false;
             down = false;
@@ -105,22 +108,10 @@ public class Player { //superclass of adam & snake
 
     public void draw(Graphics2D g2d) 
     {
-    
-        Rectangle2D.Double square = new Rectangle2D.Double(x,y,size,size);
-
-        g2d.setColor(Color.green); 
-        g2d.fill(square);
+        s1 = new Rectangle2D.Double(x,y,size,size);
+        g2d.setColor(Color.GREEN);
+        g2d.fill(s1);
 
     }
-
-    // public ImageIcon getImage() {
-        
-    //     myImage = "\"" + myImage + ".png\"";
-    //     image = new ImageIcon(this.getClass().getResource(myImage));
-        
-    //     return image;
-    // }
-
- 
 
 }
