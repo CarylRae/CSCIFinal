@@ -118,16 +118,12 @@ public class GameServer {
                         //Receiving ADAM coordinates
                         adamX = dataIn.readDouble();
                         adamY = dataIn.readDouble();
-                        //System.out.println("Received ADAM Coordinates: " + adamX + " and " + adamY); //FOR TESTING
-
-
+                        
                     } else{
                         //Receiving SNAKE coordinates
                         snakeX = dataIn.readDouble();
                         snakeY = dataIn.readDouble();
-                        //System.out.println("Received SNAKE Coordinates: " + snakeX + " and " + snakeX); //FOR TESTING
-
-
+                        
                     }
                 }
             }catch(IOException iox){
@@ -165,15 +161,14 @@ public class GameServer {
                         dataOut.writeDouble(snakeX);
                         dataOut.writeDouble(snakeY);
                         dataOut.flush();
-                        //System.out.println("Sending SNAKE to ADAM: " + snakeX + " and " + snakeY); //FOR TESTING
 
                     } else{
                         //send Adam coordinates to Snake
                         dataOut.writeDouble(adamX);
                         dataOut.writeDouble(adamY);
                         dataOut.flush();
-                        //System.out.println("Sending ADAM to SNAKE SUCCESS: " + adamX + " and " + adamY); //FOR TESTING
                     }
+
                     try{
                         Thread.sleep(25);
                     }catch(InterruptedException ix){

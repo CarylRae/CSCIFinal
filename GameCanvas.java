@@ -51,7 +51,9 @@ public class GameCanvas extends JComponent{
             block.draw(g2d);
         }
 
+        // graphic of maze
         f.getMazeImage().paintIcon(this,g2d,0,0);
+
         //draw adam
         f.getMe().draw(g2d);
         f.getEnemy().draw(g2d);
@@ -65,24 +67,17 @@ public class GameCanvas extends JComponent{
         {
             if(p.isColliding(block)){
                 if(p.getUp()){
-                    System.out.println(p.getY());
                     p.setY(p.getY()+adjust);
                 }
                 else if(p.getDown()){
-                    System.out.println(p.getY());
-
                     p.setY(p.getY() -adjust);
                 }
 
                 else if(p.getRight()){
-                    System.out.println(p.getX());
-
                     p.setX(p.getX()-adjust);
                 }
 
                 else if(p.getLeft()){
-                    System.out.println(p.getX());
-
                     p.setX(p.getX() + adjust);
                 }
 
