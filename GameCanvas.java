@@ -18,8 +18,6 @@ public class GameCanvas extends JComponent{
     private ArrayList<Double> snakeXCoordinates;
     private ArrayList<Double> snakeYCoordinates;
 
-
-
     public GameCanvas(int w, int h, GameFrame frame) {
         width = w;
         height = h;

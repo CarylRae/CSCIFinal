@@ -17,12 +17,22 @@ public class GameFrame extends JFrame{
     private WriteToServer wtsRunnable;
     private Player me, enemy;
 
+    private ImageIcon mazeImage;
+    private JLabel mazeLabel;
+
 
     public GameFrame(int w, int h)
     {
         width = w;
         height = h;
+
+        // https://www.youtube.com/watch?v=yGcYoz0s94E
+        mazeImage = new ImageIcon(this.getClass().getResource("Maze Graphic.png"));
+        mazeLabel = new JLabel(mazeImage);
+        mazeLabel.setBounds(0,0,w,h);
+    
     }
+
 
     public void setUpGUI(){
       
@@ -40,6 +50,8 @@ public class GameFrame extends JFrame{
         createPlayers();
 
         gc = new GameCanvas(width,height,this);
+        gc.add(mazeLabel);
+        
         cp.add(gc);
         gc.startAnimation();
         //cp.setFocusable(true);
@@ -48,6 +60,8 @@ public class GameFrame extends JFrame{
         this.pack();
         this.setVisible(true);
     }
+
+    
 
     private void createPlayers(){
         if(playerID == 1){ //For editing: Adam coordinates are not centered
