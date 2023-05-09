@@ -17,7 +17,7 @@ public class GameCanvas extends JComponent{
 
     private ArrayList<Double> snakeXCoordinates;
     private ArrayList<Double> snakeYCoordinates;
-
+    private int bodyParts;
 
 
     public GameCanvas(int w, int h, GameFrame frame) {
@@ -32,6 +32,7 @@ public class GameCanvas extends JComponent{
 
         //snakeBody = new SnakeBody(head);
 
+        bodyParts = 13;
         snakeXCoordinates = new ArrayList<Double>();
         snakeYCoordinates = new ArrayList<Double>();
 
@@ -94,7 +95,10 @@ public class GameCanvas extends JComponent{
                 //collisionDetection(adam);
                 collisionDetection(f.getMe());
                 f.getMe().move(1);
-                //head.move(1);
+
+                f.getEnemy().move(1);
+                // head.move(1);
+                // snakeBody.move(1);
             
                 repaint();
             }

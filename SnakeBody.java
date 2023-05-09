@@ -9,16 +9,12 @@ public class SnakeBody {
     private double y;
     private double size;
     private boolean up, down, left, right;
-    private ArrayList<Rectangle2D.Double> snakeArray;
     private Rectangle2D.Double s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12;
-
 
     public SnakeBody(SnakeHead h){
         x = h.getX();
         y = h.getY();
         size = h.getSize();
-
-        snakeArray = new ArrayList<Rectangle2D.Double>();
 
         this.up = false;
         this.down = false;
@@ -42,7 +38,8 @@ public class SnakeBody {
         s11 = new Rectangle2D.Double(x,y,size,size);
         s12 = new Rectangle2D.Double(x,y,size,size);
 
-        g2d.setColor(Color.BLUE);
+        
+        g2d.setColor(Color.GREEN);
         g2d.fill(s1);
         g2d.fill(s2);
         g2d.fill(s3);
@@ -54,13 +51,12 @@ public class SnakeBody {
         g2d.fill(s9);
         g2d.fill(s10);
         g2d.fill(s11);
-        g2d.fill(s12);
-
-
+        g2d.fill(s12);       
+            
+        
     }
 
-    public void moveA(){
-        int speed = 2;
+    public void move(int speed){
 
         if(up) {
             y -= speed;
@@ -105,27 +101,33 @@ public class SnakeBody {
         y=m;
     }
 
+
     public void setDirection(String dir) {
+        
         if(dir.equals("up")) {
             up = true;
             down = false;
             left = false;
             right = false;
+
         } else if (dir.equals("down")) {
             up = false;
             down = true;
             left = false;
             right = false;
+
         } else if (dir.equals("left")) {
             up = false;
             down = false;
             left = true;
             right = false;
+
         } else if (dir.equals("right")) {
             up = false;
             down = false;
             left = false;
             right = true;
+
         } else {
             up = false;
             down = false;

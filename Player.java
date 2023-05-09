@@ -67,6 +67,7 @@ public class Player { //superclass of adam & snake
     }
 
     public void setDirection(String dir) {
+        
         if(dir.equals("up")) {
             up = true;
             down = false;
@@ -107,8 +108,8 @@ public class Player { //superclass of adam & snake
     
         Rectangle2D.Double square = new Rectangle2D.Double(x,y,size,size);
 
-        //g2d.setColor(Color.green); 
-        //g2d.fill(square);
+        g2d.setColor(Color.green); 
+        g2d.fill(square);
 
     }
 
