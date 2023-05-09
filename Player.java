@@ -10,7 +10,6 @@ public class Player { //superclass of adam & snake
     // private String myImage;
     // private ImageIcon image;
 
-    //public Player(double x, double y, double size, String myImage){
     public Player(double x, double y, double size){
         this.x = x;
         this.y = y;
@@ -19,7 +18,6 @@ public class Player { //superclass of adam & snake
         this.down = false;
         this.left = false;
         this.right = false;
-        // this.myImage = myImage;
     }
 
     public void move(int speed){
