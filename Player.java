@@ -8,6 +8,8 @@ public class Player { //superclass of adam & snake
     protected int size;
     protected boolean up, down, left, right;
 
+    public ImageIcon img;
+
     private Rectangle2D.Double s1;
 
     public Player(double x, double y, int size){
@@ -18,6 +20,8 @@ public class Player { //superclass of adam & snake
         this.down = false;
         this.left = false;
         this.right = false;
+
+        img = new ImageIcon(this.getClass().getResource("adam.png"));
     }
 
     public void move(int speed){
@@ -108,10 +112,15 @@ public class Player { //superclass of adam & snake
 
     public void draw(Graphics2D g2d) 
     {
+
         s1 = new Rectangle2D.Double(x,y,size,size);
         g2d.setColor(Color.GREEN);
         g2d.fill(s1);
 
+    }
+
+    public ImageIcon getCharacterImage(){
+        return img;
     }
 
 }

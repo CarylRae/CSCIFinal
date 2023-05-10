@@ -9,6 +9,7 @@ public class Adam extends Player{
     private double y;
     private double size;
     private boolean up, down, left, right;
+    
 
     public Adam(double x, double y, double size){
         this.x = x;
@@ -26,15 +27,15 @@ public class Adam extends Player{
         //super(x, y, size, "adam.png");
     }
  
-    /* public void drawAdam(Graphics2D g2d) 
-    {
+    // public void drawAdam(Graphics2D g2d) 
+    // {
 
-        Rectangle2D.Double square = new Rectangle2D.Double(x,y,size,size);
+    //     Rectangle2D.Double s1 = new Rectangle2D.Double(x+4,y,size,size);
 
-        g2d.setColor(Color.green);
-        g2d.fill(square);
+    //     g2d.setColor(new Color(70, 56, 48));
+    //     g2d.fill(s1);
 
-    } */
+    // }
 
     /* public void move(){
         int speed = 2;

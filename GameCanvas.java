@@ -48,14 +48,19 @@ public class GameCanvas extends JComponent{
         {
             block.draw(g2d);
         }
+        
+        //draw squares where characters are "pinned" to
+        f.getMe().draw(g2d);
+        f.getEnemy().draw(g2d);
 
         // graphic of maze
         f.getMazeImage().paintIcon(this,g2d,0,0);
 
-        //draw characters
-        f.getMe().draw(g2d);
-        f.getEnemy().draw(g2d);
-        //f.getBody().drawBody(g2d);
+        // draw/paint the character graphics that uses the squares as reference
+        // subject to change once i
+        f.getMe().getCharacterImage().paintIcon(this,g2d,(int)f.getMe().getX(),(int)f.getMe().getY());
+        f.getEnemy().getCharacterImage().paintIcon(this,g2d,(int)f.getEnemy().getX(),(int) f.getEnemy().getY());
+    
     }
 
     public void collisionDetection (Player p){

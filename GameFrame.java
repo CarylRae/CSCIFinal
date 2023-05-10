@@ -65,13 +65,17 @@ public class GameFrame extends JFrame{
         if(playerID == 1){ //For editing: Adam coordinates are not centered
             me = new Adam(419,550,10);
             enemy = new Eve(417,301,10);
-           //body = new SnakeBody(enemy);
+           
 
         } else {
             enemy = new Adam(419,550,10);
             me = new Eve(417,301,10);
-            //body = new SnakeBody(me);
+         
         }
+    }
+
+    public int getPlayerID(){
+        return playerID;
     }
 
     public Player getMe()
@@ -83,11 +87,6 @@ public class GameFrame extends JFrame{
     {
         return enemy;
     }
-
-    /* public SnakeBody getBody()
-    {
-        return body;
-    } */
 
     public void addKeyBindings() {
 
