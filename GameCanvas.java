@@ -99,7 +99,6 @@ public class GameCanvas extends JComponent{
                 
                 repaint();
             }
-
         });
 
         animationTimer.start();
