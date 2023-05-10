@@ -8,14 +8,14 @@ import java.net.*;
 public class GameFrame extends JFrame{
 
     private GameCanvas gc; //GameCanvas
-    private Container cp; //ContentPane
+    private JPanel cp; //ContentPane
     private int width, height;
     private Socket socket;
     private int playerID;
     private ReadFromServer rfsRunnable;
     private WriteToServer wtsRunnable;
     private Player me, enemy;
-    private SnakeBody body;
+    //private SnakeBody body;
 
     private ImageIcon mazeImage;
     private JLabel mazeLabel;
@@ -34,13 +34,13 @@ public class GameFrame extends JFrame{
 
     public void setUpGUI(){
       
-        cp = this.getContentPane();
+        cp = (JPanel) this.getContentPane();
 
         if (playerID == 1){
             this.setTitle("Adam | Final Project - Abarico, Michelle - Chan, Caryl 221503");
         }
         else{
-            this.setTitle("Snake | Final Project - Abarico, Michelle - Chan, Caryl 221503");
+            this.setTitle("Eve | Final Project - Abarico, Michelle - Chan, Caryl 221503");
         }
 
         cp.setPreferredSize(new Dimension(width,height));
@@ -64,13 +64,13 @@ public class GameFrame extends JFrame{
     private void createPlayers(){
         if(playerID == 1){ //For editing: Adam coordinates are not centered
             me = new Adam(419,550,10);
-            enemy = new SnakeHead(417,301,10);
-            body = new SnakeBody(enemy);
+            enemy = new Eve(417,301,10);
+           //body = new SnakeBody(enemy);
 
         } else {
             enemy = new Adam(419,550,10);
-            me = new SnakeHead(417,301,10);
-            body = new SnakeBody(me);
+            me = new Eve(417,301,10);
+            //body = new SnakeBody(me);
         }
     }
 
@@ -84,10 +84,10 @@ public class GameFrame extends JFrame{
         return enemy;
     }
 
-    public SnakeBody getBody()
+    /* public SnakeBody getBody()
     {
         return body;
-    }
+    } */
 
     public void addKeyBindings() {
 
@@ -119,7 +119,7 @@ public class GameFrame extends JFrame{
         @Override
         public void actionPerformed(ActionEvent ae) {
                 me.setDirection(direction);
-                body.setDirection(direction);
+                //body.setDirection(direction);
             }
             
     }
@@ -134,8 +134,7 @@ public class GameFrame extends JFrame{
 
             if (playerID == 1)
             {
-                System.out.println("You are Adam. Escape through the other end of the maze without being caught by the Snake.");
-                System.out.println("Waking up the serpent...");
+                System.out.println("Picking the fruit...");
             }
 
             wtsRunnable = new WriteToServer(out);
@@ -187,6 +186,8 @@ public class GameFrame extends JFrame{
 
                 String startMsg = dataIn.readUTF();
                 System.out.println("Message from Server: " + startMsg);
+                String goal = dataIn.readUTF();
+                System.out.println(goal);
 
                 Thread readThread = new Thread(rfsRunnable);
                 Thread writeThread = new Thread(wtsRunnable);

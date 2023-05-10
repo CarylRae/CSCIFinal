@@ -7,12 +7,12 @@ public class GameServer {
     private int numPlayers;
     private int maxPlayers;
     private Socket adamSocket; //Adam
-    private Socket snakeSocket; //Snake
+    private Socket eveSocket; //Eve
     private ReadFromClient adamReadRunnable;
-    private ReadFromClient snakeReadRunnable;
+    private ReadFromClient eveReadRunnable;
     private WriteToClient adamWriteRunnable;
-    private WriteToClient snakeWriteRunnable;
-    private double adamX,adamY,snakeX,snakeY;
+    private WriteToClient eveWriteRunnable;
+    private double adamX,adamY,eveX,eveY;
 
     public GameServer()
     {
@@ -45,7 +45,7 @@ public class GameServer {
                 if (numPlayers == 1){
                     System.out.println("Adam has connected.");
                 } else {
-                    System.out.println("Snake has connected.");
+                    System.out.println("Eve has connected.");
                 }
 
                 ReadFromClient rfc = new ReadFromClient(numPlayers,in);
@@ -59,25 +59,25 @@ public class GameServer {
                 }
                 else
                 {
-                    snakeSocket = s;
-                    snakeReadRunnable = rfc;
-                    snakeWriteRunnable = wtc;
+                    eveSocket = s;
+                    eveReadRunnable = rfc;
+                    eveWriteRunnable = wtc;
 
                     //Send start message to both players that both are connected
                     adamWriteRunnable.sendStartMsg();
-                    snakeWriteRunnable.sendStartMsg();
+                    eveWriteRunnable.sendStartMsg();
 
                     //start the threads to start receiving data
                     Thread adamReadThread = new Thread(adamReadRunnable);
-                    Thread snakeReadThread = new Thread(snakeReadRunnable);
+                    Thread eveReadThread = new Thread(eveReadRunnable);
                     adamReadThread.start();
-                    snakeReadThread.start();
+                    eveReadThread.start();
 
                     //start the threads to start sending data
                     Thread adamWriteThread = new Thread(adamWriteRunnable);
-                    Thread snakeWriteThread = new Thread(snakeWriteRunnable);
+                    Thread eveWriteThread = new Thread(eveWriteRunnable);
                     adamWriteThread.start();
-                    snakeWriteThread.start();
+                    eveWriteThread.start();
 
                 }
 
@@ -104,7 +104,7 @@ public class GameServer {
                 System.out.println("RFC Adam Runnable created.");
 
             } else {
-                System.out.println("RFC Snake Runnable created.");
+                System.out.println("RFC Eve Runnable created.");
             }
 
         }
@@ -120,9 +120,9 @@ public class GameServer {
                         adamY = dataIn.readDouble();
                         
                     } else{
-                        //Receiving SNAKE coordinates
-                        snakeX = dataIn.readDouble();
-                        snakeY = dataIn.readDouble();
+                        //Receiving EVE coordinates
+                        eveX = dataIn.readDouble();
+                        eveY = dataIn.readDouble();
                         
                     }
                 }
@@ -145,7 +145,7 @@ public class GameServer {
                 System.out.println("WTC Adam Runnable created.");
 
             } else {
-                System.out.println("WTC Snake Runnable created.");
+                System.out.println("WTC Eve Runnable created.");
             }
 
         }
@@ -157,13 +157,13 @@ public class GameServer {
                 {
                     if(playerID==1)
                     {
-                        //send Snake coordinates to Adam
-                        dataOut.writeDouble(snakeX);
-                        dataOut.writeDouble(snakeY);
+                        //send Eve coordinates to Adam
+                        dataOut.writeDouble(eveX);
+                        dataOut.writeDouble(eveY);
                         dataOut.flush();
 
                     } else{
-                        //send Adam coordinates to Snake
+                        //send Adam coordinates to Eve
                         dataOut.writeDouble(adamX);
                         dataOut.writeDouble(adamY);
                         dataOut.flush();
@@ -184,7 +184,19 @@ public class GameServer {
         {
             try{
                 dataOut.writeUTF("Both players are connected.");
-                dataOut.flush();
+
+                if (playerID==1){
+                    String goal = "You are Adam. Exit the opposite side of the garden without colliding with Eve.";
+                    dataOut.writeUTF(goal);
+                    dataOut.flush();
+
+                } else {
+                    String goal = "You are Eve. Collide with Adam before he leaves the garden. Deliver the Forbidden Fruit.";
+                    dataOut.writeUTF(goal);
+                    dataOut.flush();
+
+                }
+
             }catch(IOException iox){
                 System.out.println("IOException from sendStartMsg()");
             }

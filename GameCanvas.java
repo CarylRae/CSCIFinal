@@ -11,12 +11,12 @@ public class GameCanvas extends JComponent{
     private MazeSkeleton MZ;
     private ArrayList<MazeBlock> canvasMaze;
     private Adam adam;
-    private SnakeHead head;
-    private SnakeBody snakeBody;
+    private Eve eve;
+    //private SnakeBody snakeBody;
     private GameFrame f;
 
-    private ArrayList<Double> snakeXCoordinates;
-    private ArrayList<Double> snakeYCoordinates;
+    /* private ArrayList<Double> snakeXCoordinates;
+    private ArrayList<Double> snakeYCoordinates; */
 
     public GameCanvas(int w, int h, GameFrame frame) {
         width = w;
@@ -30,8 +30,8 @@ public class GameCanvas extends JComponent{
 
         //snakeBody = new SnakeBody(head);
 
-        snakeXCoordinates = new ArrayList<Double>();
-        snakeYCoordinates = new ArrayList<Double>();
+        /* snakeXCoordinates = new ArrayList<Double>();
+        snakeYCoordinates = new ArrayList<Double>(); */
 
     }
 
@@ -55,7 +55,7 @@ public class GameCanvas extends JComponent{
         //draw characters
         f.getMe().draw(g2d);
         f.getEnemy().draw(g2d);
-        f.getBody().draw(g2d);
+        //f.getBody().drawBody(g2d);
     }
 
     public void collisionDetection (Player p){
@@ -95,7 +95,8 @@ public class GameCanvas extends JComponent{
                 collisionDetection(f.getEnemy());
                 f.getEnemy().move(1);
 
-                f.getBody().move(1);
+                //f.getBody().move(1);
+                //f.getBody();
                 
                 repaint();
             }
@@ -108,12 +109,12 @@ public class GameCanvas extends JComponent{
         return adam;
     }
 
-    public SnakeHead getSnakeHead(){
-        return head;
+    public Eve getEve(){
+        return eve;
     }
 
-    public SnakeBody getSnakeBody(){
+    /* public SnakeBody getSnakeBody(){
         return snakeBody;
-    }
+    } */
 
 }

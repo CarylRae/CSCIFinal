@@ -1,4 +1,4 @@
-import java.awt.*;
+/* import java.awt.*;
 import java.awt.geom.*;
 
 public class Square implements MazeBlock{
@@ -38,4 +38,4 @@ public class Square implements MazeBlock{
         return size;
     }
 
-}
+} */

@@ -1,4 +1,4 @@
-
+/* 
 import java.awt.*;
 import java.awt.geom.*;
 import java.util.*;
@@ -8,6 +8,7 @@ public class SnakeBody {
     private double x;
     private double y;
     private double size;
+    private Player head;
     private boolean up, down, left, right;
 
     private double snakeX[] = new double[30];
@@ -17,6 +18,11 @@ public class SnakeBody {
         x = h.getX();
         y = h.getY();
         size = h.getSize();
+
+        head = h;
+        x = head.getX();
+        y = head.getY();
+        size = head.getSize(); 
 
         snakeX[0] = x;
         snakeY[0] = y;
@@ -28,19 +34,23 @@ public class SnakeBody {
 
     }
 
-    public void draw(Graphics2D g2d) {
+    public void drawBody(Graphics2D g2d) {
 
         for (int i = 0; i<29; i++){
             if(i == 0){
                 Rectangle2D.Double r1 = new Rectangle2D.Double(snakeX[i], snakeY[i], size, size);
                 g2d.setColor(Color.GREEN);
-                g2d.fill(r1);
+                g2d.fill(r1); 
+                
             }
             else{
-                Rectangle2D.Double r1 = new Rectangle2D.Double(snakeX[i], snakeY[i], size, size);
-                g2d.setColor(new Color(45,180,0));
-                g2d.fill(r1);
+                Rectangle2D.Double b = new Rectangle2D.Double(x, y, size, size);
+                g2d.setColor(Color.BLUE); //new Color(45,180,0)
+                g2d.fill(b);
             }
+
+            x = head.getX();
+            y =  head.getY();
         }
     }
 
@@ -87,7 +97,7 @@ public class SnakeBody {
 
     public void setY(double m){
         y=m;
-    }
+    } 
 
 
     public void setDirection(String dir) {
@@ -144,3 +154,4 @@ public class SnakeBody {
                 this.y >= other.getY() + other.getHeight());
     }
 }
+ */

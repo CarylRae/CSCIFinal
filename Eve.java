@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.util.*;
 
-public class SnakeHead extends Player {
+public class Eve extends Player {
    /*  private double x;
     private double y;
     private double size;
@@ -15,7 +15,7 @@ public class SnakeHead extends Player {
     
 
     //public SnakeHead(double x, double y, double size, String myImage){
-    public SnakeHead(int x, int y, int size){
+    public Eve(int x, int y, int size){
         //super(x, y, size, "snakehead.png");
         super(x, y, size);
 
