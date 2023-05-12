@@ -133,41 +133,39 @@ public class GameCanvas extends JComponent{
         return end;
     } 
 
-    /* public boolean checkForWin(int playerID, Player me, Player enemy)
-    {
-        if (playerID == 2 && me.isColliding(enemy)){
-            winner = playerID;
-            end = true;
-            return end;
-        }
+    // public boolean checkForWin(int playerID, Player me, Player enemy)
+    // {
+    //     if (playerID == 2 && me.isColliding(enemy)){
+    //         winner = playerID;
+    //         end = true;
+    //         return end;
+    //     }
         
-        if (playerID == 1){
-            for(MazeBlock block : canvasMaze)
-            {
-                if(me.isColliding(block) && block instanceof Gate){
-                    end = true;
-                    winner = playerID;
-                    return end;
-                }
+    //     if (playerID == 1){
+    //         for(MazeBlock block : canvasMaze)
+    //         {
+    //             if(me.isColliding(block) && block instanceof Gate){
+    //                 end = true;
+    //                 winner = playerID;
+    //                 return end;
+    //             }
                     
-            }
-        }
+    //         }
+    //     }
 
-        return end;
+    //     return end;
         
-    } */
+    // } 
 
     public void startAnimation() {
         javax.swing.Timer animationTimer = new javax.swing.Timer(1,new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                collisionDetection(f.getMe());
-                f.getMe().move(1);
-
-                collisionDetection(f.getEnemy());
-                f.getEnemy().move(1);
-
+                
+                // collisionDetection(f.getEnemy());
+                // f.getEnemy().move(1);
+                
                 //f.getBody().move(1);
                 //f.getBody();
 
@@ -175,16 +173,21 @@ public class GameCanvas extends JComponent{
                 
                 adamWin(f.getPlayerID(),f.getMe(),f.getEnemy());
                 eveWin(f.getMe(),f.getEnemy());
-                
+
+                collisionDetection(f.getMe());
+                f.getMe().move(1);
+
                 //checkForWin(f.getPlayerID(), f.getMe(),f.getEnemy());
 
                 if (end == false){
                     repaint();
                 }
             }
+            
         });
 
         animationTimer.start();
+
     }
 
     public Adam getAdam(){
