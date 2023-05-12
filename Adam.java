@@ -22,8 +22,8 @@ public class Adam extends Player{
 
     } */
 
-    public Adam(int x, int y, int size){
-        super(x, y, size);
+    public Adam(int x, int y, int size, String i){
+        super(x, y, size, i);
         //super(x, y, size, "adam.png");
     }
  

@@ -2,17 +2,18 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import javax.swing.*;
 
-public class Player { //superclass of adam & snake
+public class Player implements MazeBlock { //superclass of adam & snake
     protected double x;
     protected double y;
     protected int size;
     protected boolean up, down, left, right;
+    protected String i;
 
     public ImageIcon img;
 
     private Rectangle2D.Double s1;
 
-    public Player(double x, double y, int size){
+    public Player(double x, double y, int size, String i){
         this.x = x;
         this.y = y;
         this.size = size;
@@ -20,8 +21,9 @@ public class Player { //superclass of adam & snake
         this.down = false;
         this.left = false;
         this.right = false;
+        this.i = i;
 
-        img = new ImageIcon(this.getClass().getResource("adam.png"));
+        img = new ImageIcon(this.getClass().getResource(this.i));
     }
 
     public void move(int speed){
@@ -46,6 +48,14 @@ public class Player { //superclass of adam & snake
     }
 
     public double getSize(){
+        return size;
+    }
+
+    public double getHeight(){
+        return size;
+    }
+
+    public double getWidth(){
         return size;
     }
 

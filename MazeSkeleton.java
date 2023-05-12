@@ -3,20 +3,22 @@ import java.util.ArrayList;
 
 public class MazeSkeleton {
 
-    private final int C; //constant width 15 to maintain square grid
-    private final int MAZE_EDGE_X;
-    private final int MAZE_EDGE_Y;
+    public static final int C=15; //constant width 15 to maintain grid
+    public static final int MAZE_EDGE_X=234;
+    public static final int MAZE_EDGE_Y=108;
     private ArrayList<MazeBlock> mazeFramework;
     private VRectangle v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16; // walls
     private HRectangle h1, h2, h3, h4, h5, h6, h7, h8, h9, h10, h11, h12, h13, h14, h15, h16; //walls
     private HRectangle w1, w2,w3,w4,w5,w6,w7,w8,w9,w10,w11,w13,w15,w18,w20,w22,w24,w26,w28,w30,w32,w34,w36,w38,w40,w42,w43,w44; //guts
     private VRectangle w12,w14,w16,w17,w19,w21,w23,w25,w27,w29,w31,w33,w35,w37,w39,w41,w45,w46,w47; //guts
+    private HRectangle entranceGate;
+    private Gate exitGate;
 
     public MazeSkeleton(int w) {
         mazeFramework = new ArrayList<>();
-        C = 15;
-        MAZE_EDGE_X = (w-(25*C))/2;
-        MAZE_EDGE_Y = 108;
+        /* C = 15;
+        MAZE_EDGE_X = (843-(25*C))/2;
+        MAZE_EDGE_Y = 108; */
 
         //vertical lines
         v1 = new VRectangle(MAZE_EDGE_X,MAZE_EDGE_Y,C*30); // left wall
@@ -215,6 +217,14 @@ public class MazeSkeleton {
         mazeFramework.add(w45);
         mazeFramework.add(w46);
         mazeFramework.add(w47);
+
+        //entrance and exit gates
+ 
+        entranceGate = new HRectangle(MAZE_EDGE_X+(11*C),MAZE_EDGE_Y+(30*C),C*3);
+        exitGate = new Gate(MAZE_EDGE_X+(11*C),MAZE_EDGE_Y-C,C*3);
+
+        mazeFramework.add(entranceGate);
+        mazeFramework.add(exitGate);
 
     }
 

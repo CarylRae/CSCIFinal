@@ -63,13 +63,13 @@ public class GameFrame extends JFrame{
 
     private void createPlayers(){
         if(playerID == 1){ //For editing: Adam coordinates are not centered
-            me = new Adam(419,550,10);
-            enemy = new Eve(417,301,10);
+            me = new Adam(414,543,10,"adam.png");// MAZE_EDGE_X+(11*C),MAZE_EDGE_Y-C,C*3
+            enemy = new Eve(417,301,10,"eve.png");
            
 
         } else {
-            enemy = new Adam(419,550,10);
-            me = new Eve(417,301,10);
+            enemy = new Adam(414,543,10,"adam.png");
+            me = new Eve(417,301,10,"eve.png");
          
         }
     }
@@ -123,6 +123,8 @@ public class GameFrame extends JFrame{
             
     }
 
+
+    //NETWORKING
     public void connectToServer()
     {
         try{

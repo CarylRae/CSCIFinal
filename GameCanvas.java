@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.xml.stream.events.EndElement;
+
 import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
@@ -14,6 +16,8 @@ public class GameCanvas extends JComponent{
     private Eve eve;
     //private SnakeBody snakeBody;
     private GameFrame f;
+    private boolean end;
+    private int winner; //1 for Adam, 2 for Eve
 
     /* private ArrayList<Double> snakeXCoordinates;
     private ArrayList<Double> snakeYCoordinates; */
@@ -32,6 +36,9 @@ public class GameCanvas extends JComponent{
 
         /* snakeXCoordinates = new ArrayList<Double>();
         snakeYCoordinates = new ArrayList<Double>(); */
+
+        winner = 0;
+        end = false;
 
     }
 
@@ -89,6 +96,67 @@ public class GameCanvas extends JComponent{
         }
     }
 
+
+    //collision detection for characters
+    public boolean eveWin(Player me, Player enemy) //mutator method
+    {
+        if (me.isColliding(enemy)){
+            end = true;
+        }
+        return end;
+    }
+
+    //THIS HAS LOGIC BUGS
+    public boolean adamWin(int playerID,Player me,Player enemy)
+    {
+        if (playerID == 1){
+            for(MazeBlock block : canvasMaze)
+            {
+                if(me.isColliding(block) && block instanceof Gate){
+                    end = true;
+                    return end;
+                    
+                }   
+            }
+        }
+        
+        if (playerID == 2){
+            for(MazeBlock block : canvasMaze)
+            {
+                if(enemy.isColliding(block) && block instanceof Gate){
+                    end = true;
+                    return end;  
+                }
+            }
+        }
+ 
+        return end;
+    } 
+
+    /* public boolean checkForWin(int playerID, Player me, Player enemy)
+    {
+        if (playerID == 2 && me.isColliding(enemy)){
+            winner = playerID;
+            end = true;
+            return end;
+        }
+        
+        if (playerID == 1){
+            for(MazeBlock block : canvasMaze)
+            {
+                if(me.isColliding(block) && block instanceof Gate){
+                    end = true;
+                    winner = playerID;
+                    return end;
+                }
+                    
+            }
+        }
+
+        return end;
+        
+    } */
+
     public void startAnimation() {
         javax.swing.Timer animationTimer = new javax.swing.Timer(1,new ActionListener() {
 
@@ -102,8 +170,17 @@ public class GameCanvas extends JComponent{
 
                 //f.getBody().move(1);
                 //f.getBody();
+
+                //check for Eve win
                 
-                repaint();
+                adamWin(f.getPlayerID(),f.getMe(),f.getEnemy());
+                eveWin(f.getMe(),f.getEnemy());
+                
+                //checkForWin(f.getPlayerID(), f.getMe(),f.getEnemy());
+
+                if (end == false){
+                    repaint();
+                }
             }
         });
 

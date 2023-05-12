@@ -15,9 +15,9 @@ public class Eve extends Player {
     
 
     //public SnakeHead(double x, double y, double size, String myImage){
-    public Eve(int x, int y, int size){
+    public Eve(int x, int y, int size, String i){
         //super(x, y, size, "snakehead.png");
-        super(x, y, size);
+        super(x, y, size, i);
 
         /* this.x = x;
         this.y = y;
