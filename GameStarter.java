@@ -17,12 +17,19 @@ of my program.
 The code below is the GameStarter that allows the Players to connect to the server and start the game.
 Included is also the music that plays in the background.
 */
+import java.util.*;
 
 public class GameStarter { //main for players
     public static void main(String[] args) {
 
         GameFrame gf = new GameFrame(843,675);
-        gf.connectToServer();
+        
+        Scanner console = new Scanner(System.in);
+        System.out.println("IP Address: ");
+        String ipAddress = console.nextLine();
+        console.close();
+
+        gf.connectToServer(ipAddress);
         gf.setUpGUI();
         gf.addKeyBindings();
         gf.playMusic("zong_forest.wav");

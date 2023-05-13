@@ -200,10 +200,11 @@ public class GameFrame extends JFrame{
     
 
     //NETWORKING
-    public void connectToServer()
+    public void connectToServer(String i)
     {
+        String ipAddress = i;
         try{
-            socket = new Socket("localhost",23000);
+            socket = new Socket(ipAddress,23000);
             DataInputStream in = new DataInputStream(socket.getInputStream());
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
             playerID = in.readInt();
