@@ -1,122 +1,29 @@
+/**
+This is a template for a Java file.
+@author Caryl Rae T. Chan (221503) & Michelle Kim Abarico (220017)
+@version May 13, 2023
+**/
+/*
+I have not discussed the Java language code in my program
+with anyone other than my instructor or the teaching assistants
+assigned to this course.
+I have not used Java language code obtained from another student,
+or any other unauthorized source, either modified or unmodified.
+If any Java language code or documentation used in my program
+was obtained from another source, such as a textbook or website,
+that has been clearly noted with a proper citation in the comments
+of my program.
 
-
+The code below is the adam class that extends the player class. It is the character that the player 1 controls
+and is the enemy for player 2.
+*/
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 public class Adam extends Player{
-   /*  private double x;
-    private double y;
-    private double size;
-    private boolean up, down, left, right;
-    
-
-    public Adam(double x, double y, double size){
-        this.x = x;
-        this.y = y;
-        this.size = size;
-        this.up = false;
-        this.down = false;
-        this.left = false;
-        this.right = false;
-
-    } */
 
     public Adam(int x, int y, int size, String i){
         super(x, y, size, i);
-        //super(x, y, size, "adam.png");
     }
- 
-    // public void drawAdam(Graphics2D g2d) 
-    // {
-
-    //     Rectangle2D.Double s1 = new Rectangle2D.Double(x+4,y,size,size);
-
-    //     g2d.setColor(new Color(70, 56, 48));
-    //     g2d.fill(s1);
-
-    // }
-
-    /* public void move(){
-        int speed = 2;
-
-        if(up) {
-            y -= speed;
-        } else if(down) {
-            y += speed;
-        } else if(left) {
-            x -= speed;
-        } else if(right) {
-            x += speed;
-        }
-    } */
-
-    /* public double getX(){
-        return x;
-    }
-
-    public double getY(){
-        return y;
-    }
-
-    public double getSize(){
-        return size;
-    }
-
-    public boolean getUp(){
-        return up;
-    }
-    public boolean getDown(){
-        return down;
-    }
-    public boolean getRight(){
-        return right;
-    }
-    public boolean getLeft(){
-        return left;
-    }
-    public void setX(double n){
-        x=n;
-    }
-
-    public void setY(double m){
-        y=m;
-    } */
-
-    /* public void setDirection(String dir) {
-        if(dir.equals("up")) {
-            up = true;
-            down = false;
-            left = false;
-            right = false;
-        } else if (dir.equals("down")) {
-            up = false;
-            down = true;
-            left = false;
-            right = false;
-        } else if (dir.equals("left")) {
-            up = false;
-            down = false;
-            left = true;
-            right = false;
-        } else if (dir.equals("right")) {
-            up = false;
-            down = false;
-            left = false;
-            right = true;
-        } else {
-            up = false;
-            down = false;
-            left = false;
-            right = false;
-        }
-    }
-
-    public boolean isColliding(MazeBlock other) {
-        return!(this.x + this.size <= other.getX() ||
-                this.x >= other.getX() + other.getWidth() ||
-                this.y + this.size <= other.getY() ||
-                this.y >= other.getY() + other.getHeight());
-    } */
-
 }

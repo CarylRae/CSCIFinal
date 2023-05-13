@@ -1,6 +1,24 @@
-import javax.swing.*;
-import javax.xml.stream.events.EndElement;
+/**
+This is a template for a Java file.
+@author Caryl Rae T. Chan (221503) & Michelle Kim Abarico (220017)
+@version May 13, 2023
+**/
+/*
+I have not discussed the Java language code in my program
+with anyone other than my instructor or the teaching assistants
+assigned to this course.
+I have not used Java language code obtained from another student,
+or any other unauthorized source, either modified or unmodified.
+If any Java language code or documentation used in my program
+was obtained from another source, such as a textbook or website,
+that has been clearly noted with a proper citation in the comments
+of my program.
 
+The code below is the game canvas that draws the maze and the characters. It also checks for which player
+will be the winner using collision detection.
+*/
+
+import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
@@ -14,13 +32,9 @@ public class GameCanvas extends JComponent{
     private ArrayList<MazeBlock> canvasMaze;
     private Adam adam;
     private Eve eve;
-    //private SnakeBody snakeBody;
     private GameFrame f;
     private boolean end;
     private int winner; //1 for Adam, 2 for Eve
-
-    /* private ArrayList<Double> snakeXCoordinates;
-    private ArrayList<Double> snakeYCoordinates; */
 
     public GameCanvas(int w, int h, GameFrame frame) {
         width = w;
@@ -29,14 +43,7 @@ public class GameCanvas extends JComponent{
         setPreferredSize(new Dimension(width,height));
         MZ = new MazeSkeleton(width);
         canvasMaze = MZ.buildMaze(); // Lamberlain V. Muli helped here
-        //adam = new Adam(419,550,10);
-        //head = new SnakeHead(416.5,300.5,10);
-
-        //snakeBody = new SnakeBody(head);
-
-        /* snakeXCoordinates = new ArrayList<Double>();
-        snakeYCoordinates = new ArrayList<Double>(); */
-
+    
         winner = 0;
         end = false;
 
@@ -64,7 +71,6 @@ public class GameCanvas extends JComponent{
         f.getMazeImage().paintIcon(this,g2d,0,0);
 
         // draw/paint the character graphics that uses the squares as reference
-        // subject to change once i
         f.getMe().getCharacterImage().paintIcon(this,g2d,(int)f.getMe().getX(),(int)f.getMe().getY());
         f.getEnemy().getCharacterImage().paintIcon(this,g2d,(int)f.getEnemy().getX(),(int) f.getEnemy().getY());
     
@@ -115,7 +121,7 @@ public class GameCanvas extends JComponent{
                 if(me.isColliding(block) && block instanceof Gate){
                     end = true;
                     return end;
-                    
+            
                 }   
             }
         }
@@ -140,7 +146,6 @@ public class GameCanvas extends JComponent{
             System.out.println("Eve won!");
             end = true;
 
-            //f.closeConnection();
             return end;
         }
 
@@ -151,19 +156,14 @@ public class GameCanvas extends JComponent{
                 end = true;
                 winner = playerID;
 
-                //f.closeConnection();
-
                 return end;
             } else if (playerID == 2 && enemy.isColliding(block) && block instanceof Gate){
                 System.out.println("Eve won!");
                 end = true;
                 winner = playerID;
 
-                //f.closeConnection();
-
                 return end;
-            }
-                    
+            }   
         }
 
         return end;
@@ -199,10 +199,5 @@ public class GameCanvas extends JComponent{
     public Eve getEve(){
         return eve;
     }
-
-
-    /* public SnakeBody getSnakeBody(){
-        return snakeBody;
-    } */
 
 }

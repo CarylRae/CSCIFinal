@@ -1,3 +1,24 @@
+/**
+This is a template for a Java file.
+@author Caryl Rae T. Chan (221503) & Michelle Kim Abarico (220017)
+@version May 13, 2023
+**/
+/*
+I have not discussed the Java language code in my program
+with anyone other than my instructor or the teaching assistants
+assigned to this course.
+I have not used Java language code obtained from another student,
+or any other unauthorized source, either modified or unmodified.
+If any Java language code or documentation used in my program
+was obtained from another source, such as a textbook or website,
+that has been clearly noted with a proper citation in the comments
+of my program.
+
+The code below is the player class that is extended by the adam and eve classes. 
+It contains the methods such as move, draw, collision, and getters and setters that are used by the adam 
+and eve classes to move around the maze.
+*/
+
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import javax.swing.*;
@@ -135,7 +156,6 @@ public class Player implements MazeBlock { //superclass of adam & snake
             speedBoolean = false;
             normalBoolean = false;
             randomBoolean = true;
-
         }
 
         
