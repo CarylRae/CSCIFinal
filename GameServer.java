@@ -161,6 +161,7 @@ public class GameServer {
         
         for(MazeBlock block : canvasMaze)
         {
+            //https://www.javatpoint.com/downcasting-with-instanceof-operator
             if(playerID == 1 && doesAdamWin(block) && block instanceof Gate){
                 System.out.println("Adam won!");
                 end = true;
