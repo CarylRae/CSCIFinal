@@ -7,6 +7,7 @@ public class Player implements MazeBlock { //superclass of adam & snake
     protected double y;
     protected int size;
     protected boolean up, down, left, right;
+    protected boolean speedBoolean;
     protected String i;
 
     public ImageIcon img;
@@ -27,6 +28,10 @@ public class Player implements MazeBlock { //superclass of adam & snake
     }
 
     public void move(int speed){
+
+        if(speedBoolean) {
+            speed = speed*3;
+        }
 
         if(up) {
             y -= speed;
@@ -105,7 +110,11 @@ public class Player implements MazeBlock { //superclass of adam & snake
             left = false;
             right = true;
 
-        } else {
+        } else if (dir.equals("speedUp")) {
+            speedBoolean = true;
+        }
+        
+        else {
             up = false;
             down = false;
             left = false;

@@ -192,7 +192,7 @@ public class GameCanvas extends JComponent{
     }  
 
     public void startAnimation() {
-        javax.swing.Timer animationTimer = new javax.swing.Timer(1,new ActionListener() {
+        javax.swing.Timer animationTimer = new javax.swing.Timer(20,new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
