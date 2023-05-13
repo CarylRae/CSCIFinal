@@ -243,7 +243,7 @@ public class MazeSkeleton {
 
     }
 
-    public ArrayList buildMaze(){
+    public ArrayList<MazeBlock> buildMaze(){
         return mazeFramework;
     }
 }
