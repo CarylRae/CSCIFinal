@@ -1,7 +1,7 @@
 /**
 This is a template for a Java file.
 @author Caryl Rae T. Chan (221503) & Michelle Kim Abarico (220017)
-@version May 13, 2023
+@version May 14, 2023
 **/
 /*
 I have not discussed the Java language code in my program
@@ -17,10 +17,6 @@ of my program.
 The code below is the eve class that extends the player class. It is the character that the player 2 controls
 and is the enemy for player 1.
 */
-
-import java.awt.*;
-import java.awt.geom.Rectangle2D;
-import java.util.*;
 
 public class Eve extends Player {
 

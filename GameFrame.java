@@ -1,7 +1,7 @@
 /**
 This is a template for a Java file.
 @author Caryl Rae T. Chan (221503) & Michelle Kim Abarico (220017)
-@version May 13, 2023
+@version May 14, 2023
 **/
 /*
 I have not discussed the Java language code in my program
@@ -14,8 +14,9 @@ was obtained from another source, such as a textbook or website,
 that has been clearly noted with a proper citation in the comments
 of my program.
 
-The code below is the game frame that contains the game canvas and the players. It also contains the methods
-that allow the sending and receiving of data between the two players. 
+The code below is the GameFrame that contains the GameCanvas and the Players.
+It also contains the methods that allow the sending and receiving of data between the Player and the Server. 
+It contains the methods to add and stop the KeyBindings.
 The data it shares are the coordinates of the players and the boolean value of the end game.
 */
 
@@ -24,7 +25,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.net.*;
-
 import javax.sound.sampled.*;
 
 
@@ -38,7 +38,6 @@ public class GameFrame extends JFrame{
     private ReadFromServer rfsRunnable;
     private WriteToServer wtsRunnable;
     private Player me, enemy;
-    //private SnakeBody body;
 
     private boolean end;
 
@@ -75,10 +74,8 @@ public class GameFrame extends JFrame{
         gc = new GameCanvas(width,height,this);
         end = false;
 
-        
         cp.add(gc);
         gc.startAnimation();
-        
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
@@ -90,8 +87,8 @@ public class GameFrame extends JFrame{
     }
 
     private void createPlayers(){
-        if(playerID == 1){ //For editing: Adam coordinates are not centered
-            me = new Adam(414,543,10,"adam.png");// MAZE_EDGE_X+(11*C),MAZE_EDGE_Y-C,C*3
+        if(playerID == 1){ 
+            me = new Adam(414,543,10,"adam.png");
             enemy = new Eve(417,301,10,"eve.png");
            
 
@@ -243,9 +240,9 @@ public class GameFrame extends JFrame{
                 
                 while(end == false)
                 {
-                    end = dataIn.readBoolean(); //true
+                    end = dataIn.readBoolean(); 
 
-                    //Read Enemy coordinates from Server
+                    //close client-side socket if true
                     if (end==true)
                     {
                         closeConnection();
@@ -253,8 +250,7 @@ public class GameFrame extends JFrame{
                     
                     if (enemy != null)
                     {
-                        //Apply enemy coordinates to enemy graphic
-
+                        //set enemy coordinates
                         enemy.setX(dataIn.readDouble());
                         enemy.setY(dataIn.readDouble());
                     }
@@ -301,21 +297,20 @@ public class GameFrame extends JFrame{
                 {
                     if (me != null) {
                         
-                        dataOut.writeBoolean(end); //false
+                        dataOut.writeBoolean(end); 
                         dataOut.flush();
 
-                        //send then close
+                    //close client-side socket if true
                         if (end == true)
                         {
                             closeConnection();
                         }
 
+                        //sending my coordinates
                         dataOut.writeDouble(me.getX());
                         dataOut.writeDouble(me.getY());
-                        //System.out.println("Sending MY coordinates: " + me.getX() + " and " + me.getY()); //FOR TESTING
                         dataOut.flush();
 
-                        
                     }
 
                     try{
@@ -338,10 +333,9 @@ public class GameFrame extends JFrame{
         {
             
             try {
-                socket.close(); //first to close connection is the winner
+                socket.close(); //closes client-side socket
                 stopKeyBindings();
                 gc.setIgnoreRepaint(true);
-                //System.out.println(winner + " won! " + loser + " lost.");
                 System.out.println("---CONNECTION CLOSED---");
             }catch (IOException iox)
             {

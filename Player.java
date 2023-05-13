@@ -1,7 +1,7 @@
 /**
 This is a template for a Java file.
 @author Caryl Rae T. Chan (221503) & Michelle Kim Abarico (220017)
-@version May 13, 2023
+@version May 14, 2023
 **/
 /*
 I have not discussed the Java language code in my program
@@ -14,9 +14,9 @@ was obtained from another source, such as a textbook or website,
 that has been clearly noted with a proper citation in the comments
 of my program.
 
-The code below is the player class that is extended by the adam and eve classes. 
-It contains the methods such as move, draw, collision, and getters and setters that are used by the adam 
-and eve classes to move around the maze.
+The code below is the Player class that is extended by the Adam and Eve classes. 
+It contains the methods such as move, draw, collision, and getters and setters that are used by the Adam 
+and Eve classes to move around the maze.
 */
 
 import java.awt.*;

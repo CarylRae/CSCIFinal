@@ -1,7 +1,7 @@
 /**
 This is a template for a Java file.
 @author Caryl Rae T. Chan (221503) & Michelle Kim Abarico (220017)
-@version May 13, 2023
+@version May 14, 2023
 **/
 /*
 I have not discussed the Java language code in my program
@@ -14,7 +14,7 @@ was obtained from another source, such as a textbook or website,
 that has been clearly noted with a proper citation in the comments
 of my program.
 
-The code below is the maze skeleton class that contains the maze framework.
+The code below is the MazeSkeleton class that contains the framework of the maze made of rectangles.
 This is what is used for the collision detection and is covered by the maze graphics.
 */
 
@@ -35,9 +35,6 @@ public class MazeSkeleton {
 
     public MazeSkeleton(int w) {
         mazeFramework = new ArrayList<>();
-        /* C = 15;
-        MAZE_EDGE_X = (843-(25*C))/2;
-        MAZE_EDGE_Y = 108; */
 
         //vertical lines
         v1 = new VRectangle(MAZE_EDGE_X,MAZE_EDGE_Y,C*30); // left wall
@@ -238,7 +235,6 @@ public class MazeSkeleton {
         mazeFramework.add(w47);
 
         //entrance and exit gates
- 
         entranceGate = new HRectangle(MAZE_EDGE_X+(11*C),MAZE_EDGE_Y+(30*C),C*3);
         exitGate = new Gate(MAZE_EDGE_X+(11*C),MAZE_EDGE_Y-C,C*3);
 

@@ -1,7 +1,7 @@
 /**
 This is a template for a Java file.
 @author Caryl Rae T. Chan (221503) & Michelle Kim Abarico (220017)
-@version May 13, 2023
+@version May 14, 2023
 **/
 /*
 I have not discussed the Java language code in my program
@@ -14,10 +14,9 @@ was obtained from another source, such as a textbook or website,
 that has been clearly noted with a proper citation in the comments
 of my program.
 
-The code below is the Game Server that allows the sending and receiving of data between the two players. 
+The code below is the GameServer that allows the sending and receiving of data between the two players. 
 The data it shares are the coordinates of the players and the boolean value of the end game.
 */
-
 
 import java.io.*;
 import java.net.*;
@@ -29,20 +28,15 @@ public class GameServer {
     private ServerSocket ss;
     private int numPlayers;
     private int maxPlayers;
-    private Socket adamSocket; //Adam
-    private Socket eveSocket; //Eve
+    private Socket adamSocket; 
+    private Socket eveSocket; 
     private ReadFromClient adamReadRunnable;
     private ReadFromClient eveReadRunnable;
     private WriteToClient adamWriteRunnable;
     private WriteToClient eveWriteRunnable;
     private double adamX,adamY,eveX,eveY;
-
     private MazeSkeleton MZ;
     private ArrayList<MazeBlock> canvasMaze;
-
-    //private int winner; //1 for Adam, 2 for Eve
-
-
     private boolean end;
 
 
@@ -51,8 +45,6 @@ public class GameServer {
         System.out.println("==== GAME SERVER ====");
         numPlayers = 0;
         maxPlayers = 2;
-
-        
 
         MZ = new MazeSkeleton(width);
         canvasMaze = MZ.buildMaze(); // Lamberlain V. Muli helped here
@@ -77,7 +69,6 @@ public class GameServer {
 
                 numPlayers++;
                 out.writeInt(numPlayers); //send the current number of players to the player
-                //out.flush();
 
                 if (numPlayers == 1){
                     System.out.println("Adam has connected.");
@@ -117,8 +108,6 @@ public class GameServer {
                     eveWriteThread.start();
 
                     end = false;
-
-
                 }
 
             }
@@ -131,6 +120,7 @@ public class GameServer {
 
     }
 
+    //checks if Adam and Eve collide for Eve win
     public boolean aeCollide(int pid) {
         int playerID = pid;
             if (playerID == 1){
@@ -148,6 +138,8 @@ public class GameServer {
             }
     }
 
+
+    //checks if Adam collides with Gate
     public boolean doesAdamWin(MazeBlock other) {
         return!(adamX + 12 <= other.getX() ||
                 adamX >= other.getX() + other.getWidth() ||
@@ -155,6 +147,7 @@ public class GameServer {
                 adamY >= other.getY() + other.getHeight());
     }
 
+    //checks if either character wins
     public boolean checkForWin(int pid)
     {
         int playerID = pid;
@@ -185,7 +178,6 @@ public class GameServer {
         }
 
         return end;
-        
     }
 
     private class ReadFromClient implements Runnable{
@@ -212,28 +204,27 @@ public class GameServer {
                 {
                     if(playerID==1)
                     {
-                        //Receiving ADAM coordinates
-
                         end = dataIn.readBoolean();
 
                         if (end==true)
                         {
                             closeConnection();
                         }
-                        
+
+                        //Receiving Adam coordinates
                         adamX = dataIn.readDouble();
                         adamY = dataIn.readDouble();
                         end = checkForWin(playerID);
                         
                     } else{
 
-                        end = dataIn.readBoolean(); //false
+                        end = dataIn.readBoolean(); 
                         if (end==true)
                         {
                             closeConnection();
                         }
 
-                        //Receiving EVE coordinates
+                        //Receiving Eve coordinates
                         eveX = dataIn.readDouble();
                         eveY = dataIn.readDouble();
                         end = checkForWin(playerID);
@@ -258,11 +249,9 @@ public class GameServer {
             dataOut = out;
             if (playerID == 1){
                 System.out.println("WTC Adam Runnable created.");
-
             } else {
                 System.out.println("WTC Eve Runnable created.");
             }
-
         }
 
         public void run()
@@ -276,7 +265,6 @@ public class GameServer {
                         dataOut.writeBoolean(end);
                         dataOut.flush();
 
-
                         //send Eve coordinates to Adam
                         dataOut.writeDouble(eveX);
                         dataOut.writeDouble(eveY);
@@ -284,15 +272,12 @@ public class GameServer {
 
                     } else{
 
-                        
                         dataOut.writeBoolean(end);
                         dataOut.flush();
 
-                        
                         //send Adam coordinates to Eve
                         dataOut.writeDouble(adamX);
                         dataOut.writeDouble(adamY);
-                        
                         dataOut.flush();
                     }
 
@@ -318,14 +303,11 @@ public class GameServer {
                     String goal = "You are Adam. Exit the opposite side of the garden without colliding with Eve.";
                     dataOut.writeUTF(goal);
                     dataOut.flush();
-
                 } else {
                     String goal = "You are Eve. Collide with Adam before he leaves the garden. Deliver the Forbidden Fruit.";
                     dataOut.writeUTF(goal);
                     dataOut.flush();
-
                 }
-
             }catch(IOException iox){
                 System.out.println("IOException from sendStartMsg()");
             }

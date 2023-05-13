@@ -1,7 +1,7 @@
 /**
 This is a template for a Java file.
 @author Caryl Rae T. Chan (221503) & Michelle Kim Abarico (220017)
-@version May 13, 2023
+@version May 14, 2023
 **/
 /*
 I have not discussed the Java language code in my program
@@ -14,7 +14,7 @@ was obtained from another source, such as a textbook or website,
 that has been clearly noted with a proper citation in the comments
 of my program.
 
-The code below is the Game Starter that allows the players to connect to the server and start the game.
+The code below is the GameStarter that allows the Players to connect to the server and start the game.
 Included is also the music that plays in the background.
 */
 

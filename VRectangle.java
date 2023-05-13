@@ -1,7 +1,7 @@
 /**
 This is a template for a Java file.
 @author Caryl Rae T. Chan (221503) & Michelle Kim Abarico (220017)
-@version May 13, 2023
+@version May 14, 2023
 **/
 /*
 I have not discussed the Java language code in my program
@@ -21,7 +21,7 @@ It is the class for the vertical rectangles that make up the maze.
 import java.awt.*;
 import java.awt.geom.*;
 
-//Vertical rectangles permanent width of 15 px (for maze building)
+//Vertical rectangles have a permanent width of 15 px (for maze building)
 public class VRectangle implements MazeBlock{
 
     private double x;

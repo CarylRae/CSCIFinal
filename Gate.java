@@ -1,7 +1,7 @@
 /**
 This is a template for a Java file.
 @author Caryl Rae T. Chan (221503) & Michelle Kim Abarico (220017)
-@version May 13, 2023
+@version May 14, 2023
 **/
 /*
 I have not discussed the Java language code in my program
@@ -39,7 +39,6 @@ public class Gate implements MazeBlock {
     public void draw(Graphics2D g2d)
     {
         Rectangle2D.Double rectangle = new Rectangle2D.Double(x,y,width,height);
-
         g2d.setColor(Color.GREEN);
         g2d.fill(rectangle);
     }

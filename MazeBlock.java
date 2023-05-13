@@ -1,7 +1,7 @@
 /**
 This is a template for a Java file.
 @author Caryl Rae T. Chan (221503) & Michelle Kim Abarico (220017)
-@version May 13, 2023
+@version May 14, 2023
 **/
 /*
 I have not discussed the Java language code in my program
@@ -14,8 +14,8 @@ was obtained from another source, such as a textbook or website,
 that has been clearly noted with a proper citation in the comments
 of my program.
 
-The code below is the maze block interface that is implemented by the maze block classes, HRectangle and VRectangle.
-It contains the methods that are used by the maze block classes.
+The code below is the MazeBlock interface that is implemented by the Gate, HRectangle, and VRectangle classes.
+It contains the methods that are implemented by the MazeBlock classes.
 */
 
 import java.awt.*;
