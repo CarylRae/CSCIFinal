@@ -231,6 +231,7 @@ public class GameFrame extends JFrame{
                     }
                 }
             }catch(IOException iox){
+                closeConnection();
                 System.out.println("IOException from RFS run()");
             }
         }
@@ -299,6 +300,7 @@ public class GameFrame extends JFrame{
 
 
             }catch(IOException iox){
+                closeConnection();
                 System.out.println("IOException from WTS run()");
             }
         }
@@ -310,7 +312,8 @@ public class GameFrame extends JFrame{
             
             try {
                 socket.close(); //first to close connection is the winner
-                //stopKeyBindings();
+                stopKeyBindings();
+                gc.setIgnoreRepaint(true);
                 //System.out.println(winner + " won! " + loser + " lost.");
                 System.out.println("---CONNECTION CLOSED---");
             }catch (IOException iox)
