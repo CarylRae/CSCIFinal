@@ -1,13 +1,14 @@
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import javax.swing.*;
+import java.util.Random;
 
 public class Player implements MazeBlock { //superclass of adam & snake
     protected double x;
     protected double y;
     protected int size;
     protected boolean up, down, left, right;
-    protected boolean speedBoolean;
+    protected boolean speedBoolean, normalBoolean, randomBoolean;
     protected String i;
 
     public ImageIcon img;
@@ -29,10 +30,20 @@ public class Player implements MazeBlock { //superclass of adam & snake
 
     public void move(int speed){
 
+        Random num = new Random();
+        int random = num.nextInt( 4 );
+
         if(speedBoolean) {
             speed = speed*3;
         }
-
+        if(normalBoolean){
+            speed = 1;
+        }
+        if(randomBoolean){
+            speed = speed*random;
+            
+        }
+        
         if(up) {
             y -= speed;
         } else if(down) {
@@ -112,7 +123,21 @@ public class Player implements MazeBlock { //superclass of adam & snake
 
         } else if (dir.equals("speedUp")) {
             speedBoolean = true;
+            normalBoolean = false;
+            randomBoolean = false;
+            
+        } else if (dir.equals("normalSpeed")) {
+            speedBoolean = false;
+            normalBoolean = true;
+            randomBoolean = false;
+
+        } else if (dir.equals("messySpeed")) {
+            speedBoolean = false;
+            normalBoolean = false;
+            randomBoolean = true;
+
         }
+
         
         else {
             up = false;

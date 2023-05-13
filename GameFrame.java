@@ -34,8 +34,6 @@ public class GameFrame extends JFrame{
         mazeImage = new ImageIcon(this.getClass().getResource("Maze Graphic.png"));
         mazeLabel = new JLabel(mazeImage);
         mazeLabel.setBounds(0,0,w,h);
-
-      
     
     }
 
@@ -111,14 +109,25 @@ public class GameFrame extends JFrame{
         am.put("left", new MoveAction("left"));
         am.put("right", new MoveAction("right"));
         am.put("stop", new MoveAction(""));
-        am.put("speedUp", new MoveAction("speedUp"));
+
+        
+        am.put("speedUp", new MoveAction("speedUp")); // power ups
+        am.put("normalSpeed", new MoveAction("normalSpeed")); // undo changes
+
+        am.put("random", new MoveAction("random")); // trap
+        
 
         im.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0, false), "up");
         im.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0, false), "down");
         im.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0, false), "left");
         im.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0, false), "right");
         im.put(KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0, false), "stop");
+
         im.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0, false), "speedUp");
+
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_N, 0, false), "normalSpeed");
+
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_R, 0, false), "random");
     }
 
 

@@ -155,7 +155,7 @@ public class GameCanvas extends JComponent{
 
                 return end;
             } else if (playerID == 2 && enemy.isColliding(block) && block instanceof Gate){
-                System.out.println("Adam WONNNN!");
+                System.out.println("Eve won!");
                 end = true;
                 winner = playerID;
 
@@ -166,27 +166,6 @@ public class GameCanvas extends JComponent{
                     
         }
 
-        /* if (playerID == 2 && me.isColliding(enemy)){
-            System.out.println("EVE has ENDED");
-
-            winner = playerID;
-            end = true;
-            return end;
-        }
-        
-        if (playerID == 1){
-            for(MazeBlock block : canvasMaze)
-            {
-                if(me.isColliding(block) && block instanceof Gate){
-                    System.out.println("Adam has ENDED");
-                    end = true;
-                    winner = playerID;
-                    return end;
-                }
-                    
-            }
-        } */
-
         return end;
         
     }  
@@ -196,17 +175,6 @@ public class GameCanvas extends JComponent{
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
-                // collisionDetection(f.getEnemy());
-                // f.getEnemy().move(1);
-                
-                //f.getBody().move(1);
-                //f.getBody();
-
-                //check for Eve win
-                
-                /* adamWin(f.getPlayerID(),f.getMe(),f.getEnemy());
-                eveWin(f.getMe(),f.getEnemy()); */
 
                 collisionDetection(f.getMe());
                 f.getMe().move(1);
