@@ -14,6 +14,9 @@ public class GameServer {
     private WriteToClient eveWriteRunnable;
     private double adamX,adamY,eveX,eveY;
 
+    private boolean end;
+
+
     public GameServer()
     {
         System.out.println("==== GAME SERVER ====");
@@ -79,6 +82,9 @@ public class GameServer {
                     adamWriteThread.start();
                     eveWriteThread.start();
 
+                    end = false;
+
+
                 }
 
             }
@@ -111,19 +117,44 @@ public class GameServer {
 
         public void run(){
             try{
-                while(true)
+                while(end == false)
                 {
                     if(playerID==1)
                     {
                         //Receiving ADAM coordinates
+
+                        end = dataIn.readBoolean();
+                        if (end==true)
+                        {
+                            try{
+                                Thread.sleep(25);
+                            }catch(InterruptedException ix){
+                                System.out.println("InterruptedException from WTC run()");
+                            }
+                            closeConnection(playerID);
+                        }
+                        
                         adamX = dataIn.readDouble();
                         adamY = dataIn.readDouble();
                         
                     } else{
+
+                        end = dataIn.readBoolean(); //true
+                        if (end)
+                        {
+
+                            try{
+                                Thread.sleep(25);
+                            }catch(InterruptedException ix){
+                                System.out.println("InterruptedException from WTC run()");
+                            }
+                            //pause tell other player to stop HERE
+                            closeConnection(playerID);
+                        }
+
                         //Receiving EVE coordinates
                         eveX = dataIn.readDouble();
                         eveY = dataIn.readDouble();
-                        
                     }
                 }
             }catch(IOException iox){
@@ -153,19 +184,27 @@ public class GameServer {
         public void run()
         {
             try{
-                while(true)
+                while(end==false)
                 {
                     if(playerID==1)
                     {
+                       
+                        dataOut.writeBoolean(end);
+
                         //send Eve coordinates to Adam
                         dataOut.writeDouble(eveX);
                         dataOut.writeDouble(eveY);
                         dataOut.flush();
 
                     } else{
+
+                        
+                        dataOut.writeBoolean(end);
+                        
                         //send Adam coordinates to Eve
                         dataOut.writeDouble(adamX);
                         dataOut.writeDouble(adamY);
+                        
                         dataOut.flush();
                     }
 
@@ -175,6 +214,7 @@ public class GameServer {
                         System.out.println("InterruptedException from WTC run()");
                     }
                 }
+                
             }catch(IOException iox){
                 System.out.println("IOException from WTC run()");
             }
@@ -203,6 +243,20 @@ public class GameServer {
         }
     }
 
+    public void closeConnection(int playerID)
+        {
+            try {
+                adamSocket.close();
+                eveSocket.close();
+                System.out.println("adam closed.");
+                System.out.println("eve closed.");
+
+                System.out.println("Connection closed.");
+            }catch (IOException iox)
+            {
+                System.out.println("IOException from method closeConnection() SSC");
+            }
+        }
 
     public static void main(String[] args)
     {

@@ -133,29 +133,29 @@ public class GameCanvas extends JComponent{
         return end;
     } 
 
-    // public boolean checkForWin(int playerID, Player me, Player enemy)
-    // {
-    //     if (playerID == 2 && me.isColliding(enemy)){
-    //         winner = playerID;
-    //         end = true;
-    //         return end;
-    //     }
+    public boolean checkForWin(int playerID, Player me, Player enemy)
+    {
+        if (playerID == 2 && me.isColliding(enemy)){
+            winner = playerID;
+            end = true;
+            return end;
+        }
         
-    //     if (playerID == 1){
-    //         for(MazeBlock block : canvasMaze)
-    //         {
-    //             if(me.isColliding(block) && block instanceof Gate){
-    //                 end = true;
-    //                 winner = playerID;
-    //                 return end;
-    //             }
+        if (playerID == 1){
+            for(MazeBlock block : canvasMaze)
+            {
+                if(me.isColliding(block) && block instanceof Gate){
+                    end = true;
+                    winner = playerID;
+                    return end;
+                }
                     
-    //         }
-    //     }
+            }
+        }
 
-    //     return end;
+        return end;
         
-    // } 
+    }  
 
     public void startAnimation() {
         javax.swing.Timer animationTimer = new javax.swing.Timer(1,new ActionListener() {
@@ -171,13 +171,13 @@ public class GameCanvas extends JComponent{
 
                 //check for Eve win
                 
-                adamWin(f.getPlayerID(),f.getMe(),f.getEnemy());
-                eveWin(f.getMe(),f.getEnemy());
+                /* adamWin(f.getPlayerID(),f.getMe(),f.getEnemy());
+                eveWin(f.getMe(),f.getEnemy()); */
 
                 collisionDetection(f.getMe());
                 f.getMe().move(1);
 
-                //checkForWin(f.getPlayerID(), f.getMe(),f.getEnemy());
+                checkForWin(f.getPlayerID(), f.getMe(),f.getEnemy());
 
                 if (end == false){
                     repaint();
@@ -197,6 +197,7 @@ public class GameCanvas extends JComponent{
     public Eve getEve(){
         return eve;
     }
+
 
     /* public SnakeBody getSnakeBody(){
         return snakeBody;

@@ -4,6 +4,8 @@ import java.awt.event.*;
 import java.io.*;
 import java.net.*;
 
+import javax.sound.sampled.*;
+
 
 public class GameFrame extends JFrame{
 
@@ -17,6 +19,9 @@ public class GameFrame extends JFrame{
     private Player me, enemy;
     //private SnakeBody body;
 
+    private boolean end;
+
+
     private ImageIcon mazeImage;
     private JLabel mazeLabel;
 
@@ -29,6 +34,8 @@ public class GameFrame extends JFrame{
         mazeImage = new ImageIcon(this.getClass().getResource("Maze Graphic.png"));
         mazeLabel = new JLabel(mazeImage);
         mazeLabel.setBounds(0,0,w,h);
+
+      
     
     }
 
@@ -48,9 +55,12 @@ public class GameFrame extends JFrame{
         createPlayers();
 
         gc = new GameCanvas(width,height,this);
+        end = gc.checkForWin(playerID,me,enemy);
+
         
         cp.add(gc);
         gc.startAnimation();
+        
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
@@ -88,6 +98,7 @@ public class GameFrame extends JFrame{
         return enemy;
     }
 
+
     public void addKeyBindings() {
 
         gc.setFocusable(true);
@@ -108,6 +119,26 @@ public class GameFrame extends JFrame{
         im.put(KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0, false), "stop");
     }
 
+    public void stopKeyBindings() {
+
+
+        ActionMap am = gc.getActionMap();
+        InputMap im = gc.getInputMap();
+
+        am.put("stop", new MoveAction(""));
+        am.put("stop", new MoveAction(""));
+        am.put("stop", new MoveAction(""));
+        am.put("stop", new MoveAction(""));
+        am.put("stop", new MoveAction(""));
+
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0, false), "stop");
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0, false), "stop");
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0, false), "stop");
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0, false), "stop");
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0, false), "stop");
+    }
+
+
     private class MoveAction extends AbstractAction {
         private String direction;
 
@@ -123,6 +154,22 @@ public class GameFrame extends JFrame{
             
     }
 
+    public void playMusic(String filePath)
+    {
+        Clip clip;
+        try{
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile());
+            clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        }
+        catch (UnsupportedAudioFileException | IOException | LineUnavailableException x)
+        {
+            System.out.println("Error playing music.");
+        }
+    }
+    
 
     //NETWORKING
     public void connectToServer()
@@ -143,6 +190,7 @@ public class GameFrame extends JFrame{
             rfsRunnable = new ReadFromServer(in);
             rfsRunnable.waitForStartMsg();
 
+
         }
         catch (IOException iox){
             System.out.println("IOException from connectToServer()");
@@ -161,19 +209,23 @@ public class GameFrame extends JFrame{
         public void run()
         {
             try{
-                while(true)
+                
+                while(end == false)
                 {
-                    //Read Enemy coordinates from Server
-                    double enemyX = dataIn.readDouble();
-                    double enemyY = dataIn.readDouble();
+                    end = dataIn.readBoolean();
 
+                    //Read Enemy coordinates from Server
+                    if (end==true)
+                    {
+                        closeConnection();
+                    }
+                    
                     if (enemy != null)
                     {
                         //Apply enemy coordinates to enemy graphic
 
-                        enemy.setX(enemyX);
-                        enemy.setY(enemyY);
-
+                        enemy.setX(dataIn.readDouble());
+                        enemy.setY(dataIn.readDouble());
                     }
                 }
             }catch(IOException iox){
@@ -213,14 +265,27 @@ public class GameFrame extends JFrame{
 
         public void run(){
             try{
-                while(true)
+                while(end==false)
                 {
                     //Send Player's coordinates to Server
                     if (me != null) {
+                        end = gc.checkForWin(playerID,me,enemy);
+                        dataOut.writeBoolean(end);
+                        dataOut.flush();
+
+                        //send then close
+                        if (end == true)
+                        {
+                            
+                            closeConnection();
+                        }
+
                         dataOut.writeDouble(me.getX());
                         dataOut.writeDouble(me.getY());
                         //System.out.println("Sending MY coordinates: " + me.getX() + " and " + me.getY()); //FOR TESTING
                         dataOut.flush();
+
+                        
                     }
 
                     try{
@@ -230,10 +295,27 @@ public class GameFrame extends JFrame{
                     }
                 }
 
+
             }catch(IOException iox){
                 System.out.println("IOException from WTS run()");
             }
         }
+        
     }
+
+    public void closeConnection()
+        {
+            
+            try {
+                socket.close(); //first to close connection is the winner
+                //stopKeyBindings();
+                //System.out.println(winner + " won! " + loser + " lost.");
+                System.out.println("---CONNECTION CLOSED---");
+            }catch (IOException iox)
+            {
+                System.out.println("IOException from method closeConnection() CSC");
+            }
+        }
+
     
 }
