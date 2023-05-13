@@ -42,7 +42,6 @@ public class GameFrame extends JFrame{
 
     private boolean end;
 
-
     private ImageIcon mazeImage;
     private JLabel mazeLabel;
 
@@ -74,7 +73,7 @@ public class GameFrame extends JFrame{
         createPlayers();
 
         gc = new GameCanvas(width,height,this);
-        end = gc.checkForWin(playerID,me,enemy);
+        //end = gc.checkForWin(playerID,me,enemy);
 
         
         cp.add(gc);
@@ -302,7 +301,7 @@ public class GameFrame extends JFrame{
                 {
                     //Send Player's coordinates to Server
                     if (me != null) {
-                        end = gc.checkForWin(playerID,me,enemy);
+                        //end = gc.checkForWin(playerID,me,enemy);
                         dataOut.writeBoolean(end);
                         dataOut.flush();
 

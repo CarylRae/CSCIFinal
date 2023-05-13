@@ -21,9 +21,11 @@ The data it shares are the coordinates of the players and the boolean value of t
 
 import java.io.*;
 import java.net.*;
+import java.util.*;
 
 public class GameServer {
 
+    public static final int width = 843;
     private ServerSocket ss;
     private int numPlayers;
     private int maxPlayers;
@@ -35,6 +37,12 @@ public class GameServer {
     private WriteToClient eveWriteRunnable;
     private double adamX,adamY,eveX,eveY;
 
+    private MazeSkeleton MZ;
+    private ArrayList<MazeBlock> canvasMaze;
+
+    private int winner; //1 for Adam, 2 for Eve
+
+
     private boolean end;
 
 
@@ -43,6 +51,11 @@ public class GameServer {
         System.out.println("==== GAME SERVER ====");
         numPlayers = 0;
         maxPlayers = 2;
+
+        winner = 0;
+
+        MZ = new MazeSkeleton(width);
+        canvasMaze = MZ.buildMaze(); // Lamberlain V. Muli helped here
 
         try{
             ss = new ServerSocket(23000);
@@ -118,6 +131,38 @@ public class GameServer {
 
     }
 
+    public boolean checkForWin(int playerID)
+    {
+
+        if (me.isColliding(enemy)){
+            System.out.println("Eve won!");
+            end = true;
+
+            return end;
+        }
+
+        for(MazeBlock block : canvasMaze)
+        {
+            if(playerID == 1 && me.isColliding(block) && block instanceof Gate){
+                System.out.println("Adam won!");
+                end = true;
+                winner = playerID;
+
+                return end;
+            } else if (playerID == 2 && enemy.isColliding(block) && block instanceof Gate){
+                System.out.println("Eve won!");
+                end = true;
+                winner = playerID;
+
+                return end;
+            }
+                    
+        }
+
+        return end;
+        
+    }
+
     private class ReadFromClient implements Runnable{
         private int playerID;
         private DataInputStream dataIn;
@@ -144,19 +189,22 @@ public class GameServer {
                     {
                         //Receiving ADAM coordinates
 
-                        end = dataIn.readBoolean();
+                        //end = dataIn.readBoolean();
+
+                        
                         if (end==true)
                         {
-                            try{
-                                Thread.sleep(25);
-                            }catch(InterruptedException ix){
-                                System.out.println("InterruptedException from WTC run()");
-                            }
+                            // try{
+                            //     Thread.sleep(25);
+                            // }catch(InterruptedException ix){
+                            //     System.out.println("InterruptedException from WTC run()");
+                            // }
                             closeConnection(playerID);
                         }
                         
                         adamX = dataIn.readDouble();
                         adamY = dataIn.readDouble();
+                        end = checkForWin(playerID, me, enemy);
                         
                     } else{
 

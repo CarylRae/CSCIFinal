@@ -121,7 +121,7 @@ public class GameCanvas extends JComponent{
                 if(me.isColliding(block) && block instanceof Gate){
                     end = true;
                     return end;
-            
+                    
                 }   
             }
         }
@@ -139,36 +139,37 @@ public class GameCanvas extends JComponent{
         return end;
     } 
 
-    public boolean checkForWin(int playerID, Player me, Player enemy)
-    {
+    // public boolean checkForWin(int playerID, Player me, Player enemy)
+    // {
 
-        if (me.isColliding(enemy)){
-            System.out.println("Eve won!");
-            end = true;
+    //     if (me.isColliding(enemy)){
+    //         System.out.println("Eve won!");
+    //         end = true;
 
-            return end;
-        }
+    //         return end;
+    //     }
 
-        for(MazeBlock block : canvasMaze)
-        {
-            if(playerID == 1 && me.isColliding(block) && block instanceof Gate){
-                System.out.println("Adam won!");
-                end = true;
-                winner = playerID;
+    //     for(MazeBlock block : canvasMaze)
+    //     {
+    //         if(playerID == 1 && me.isColliding(block) && block instanceof Gate){
+    //             System.out.println("Adam won!");
+    //             end = true;
+    //             winner = playerID;
 
-                return end;
-            } else if (playerID == 2 && enemy.isColliding(block) && block instanceof Gate){
-                System.out.println("Eve won!");
-                end = true;
-                winner = playerID;
+    //             return end;
+    //         } else if (playerID == 2 && enemy.isColliding(block) && block instanceof Gate){
+    //             System.out.println("Eve won!");
+    //             end = true;
+    //             winner = playerID;
 
-                return end;
-            }   
-        }
+    //             return end;
+    //         }
+                    
+    //     }
 
-        return end;
+    //     return end;
         
-    }  
+    // }  
 
     public void startAnimation() {
         javax.swing.Timer animationTimer = new javax.swing.Timer(20,new ActionListener() {
@@ -179,11 +180,11 @@ public class GameCanvas extends JComponent{
                 collisionDetection(f.getMe());
                 f.getMe().move(1);
 
-                checkForWin(f.getPlayerID(), f.getMe(),f.getEnemy());
+                //checkForWin(f.getPlayerID(), f.getMe(),f.getEnemy());
 
-                if (end == false){
-                    repaint();
-                }
+                // if (end == false){
+                repaint();
+                // }
             }
             
         });
@@ -199,5 +200,10 @@ public class GameCanvas extends JComponent{
     public Eve getEve(){
         return eve;
     }
+
+
+    /* public SnakeBody getSnakeBody(){
+        return snakeBody;
+    } */
 
 }
