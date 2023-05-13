@@ -25,7 +25,7 @@ public class GameStarter { //main for players
         gf.connectToServer();
         gf.setUpGUI();
         gf.addKeyBindings();
-        gf.playMusic("Hisaishi.wav");
+        gf.playMusic("zong_forest.wav");
     
     }
 
