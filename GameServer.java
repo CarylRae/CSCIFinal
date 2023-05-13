@@ -162,19 +162,22 @@ public class GameServer {
         if (aeCollide(playerID)){
             System.out.println("Eve won!");
             end = true;
+            closeConnection();
             return end;
         }
-
+        
         for(MazeBlock block : canvasMaze)
         {
             if(playerID == 1 && doesAdamWin(block) && block instanceof Gate){
                 System.out.println("Adam won!");
                 end = true;
-                
+                closeConnection();
+
                 return end;
             } else if (playerID == 2 && doesAdamWin(block) && block instanceof Gate){
                 System.out.println("Adam won!");
                 end = true;
+                closeConnection();
 
                 return end;
             }
@@ -212,10 +215,10 @@ public class GameServer {
                         //Receiving ADAM coordinates
 
                         end = dataIn.readBoolean();
-                        
+
                         if (end==true)
                         {
-                            closeConnection(playerID);
+                            closeConnection();
                         }
                         
                         adamX = dataIn.readDouble();
@@ -224,11 +227,10 @@ public class GameServer {
                         
                     } else{
 
-                        end = dataIn.readBoolean(); //true
+                        end = dataIn.readBoolean(); //false
                         if (end==true)
                         {
-
-                            closeConnection(playerID);
+                            closeConnection();
                         }
 
                         //Receiving EVE coordinates
@@ -239,6 +241,7 @@ public class GameServer {
                     }
                 }
             }catch(IOException iox){
+                closeConnection();
                 System.out.println("IOException from RFC run()");
             }
 
@@ -301,6 +304,7 @@ public class GameServer {
                 }
                 
             }catch(IOException iox){
+                closeConnection();
                 System.out.println("IOException from WTC run()");
             }
         }
@@ -328,13 +332,13 @@ public class GameServer {
         }
     }
 
-    public void closeConnection(int playerID)
+    public void closeConnection()
         {
             try {
                 adamSocket.close();
                 eveSocket.close();
-                System.out.println("adam closed.");
-                System.out.println("eve closed.");
+                System.out.println("Adam closed.");
+                System.out.println("Eve closed.");
 
                 System.out.println("Connection closed.");
             }catch (IOException iox)

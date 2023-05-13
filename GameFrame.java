@@ -243,7 +243,7 @@ public class GameFrame extends JFrame{
                 
                 while(end == false)
                 {
-                    end = dataIn.readBoolean(); 
+                    end = dataIn.readBoolean(); //true
 
                     //Read Enemy coordinates from Server
                     if (end==true)
@@ -301,13 +301,12 @@ public class GameFrame extends JFrame{
                 {
                     if (me != null) {
                         
-                        dataOut.writeBoolean(end);
+                        dataOut.writeBoolean(end); //false
                         dataOut.flush();
 
                         //send then close
                         if (end == true)
                         {
-
                             closeConnection();
                         }
 
