@@ -182,7 +182,7 @@ public class GameFrame extends JFrame{
 
             if (playerID == 1)
             {
-                System.out.println("Picking the fruit...");
+                System.out.println("Waiting for Eve...");
             }
 
             wtsRunnable = new WriteToServer(out);

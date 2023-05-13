@@ -135,7 +135,40 @@ public class GameCanvas extends JComponent{
 
     public boolean checkForWin(int playerID, Player me, Player enemy)
     {
-        if (playerID == 2 && me.isColliding(enemy)){
+
+        if (me.isColliding(enemy)){
+            System.out.println("Eve won!");
+            end = true;
+
+            //f.closeConnection();
+            return end;
+        }
+
+        for(MazeBlock block : canvasMaze)
+        {
+            if(playerID == 1 && me.isColliding(block) && block instanceof Gate){
+                System.out.println("Adam won!");
+                end = true;
+                winner = playerID;
+
+                //f.closeConnection();
+
+                return end;
+            } else if (playerID == 2 && enemy.isColliding(block) && block instanceof Gate){
+                System.out.println("Adam WONNNN!");
+                end = true;
+                winner = playerID;
+
+                //f.closeConnection();
+
+                return end;
+            }
+                    
+        }
+
+        /* if (playerID == 2 && me.isColliding(enemy)){
+            System.out.println("EVE has ENDED");
+
             winner = playerID;
             end = true;
             return end;
@@ -145,13 +178,14 @@ public class GameCanvas extends JComponent{
             for(MazeBlock block : canvasMaze)
             {
                 if(me.isColliding(block) && block instanceof Gate){
+                    System.out.println("Adam has ENDED");
                     end = true;
                     winner = playerID;
                     return end;
                 }
                     
             }
-        }
+        } */
 
         return end;
         
