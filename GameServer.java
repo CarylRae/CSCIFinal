@@ -40,7 +40,7 @@ public class GameServer {
     private MazeSkeleton MZ;
     private ArrayList<MazeBlock> canvasMaze;
 
-    private int winner; //1 for Adam, 2 for Eve
+    //private int winner; //1 for Adam, 2 for Eve
 
 
     private boolean end;
@@ -52,7 +52,7 @@ public class GameServer {
         numPlayers = 0;
         maxPlayers = 2;
 
-        winner = 0;
+        
 
         MZ = new MazeSkeleton(width);
         canvasMaze = MZ.buildMaze(); // Lamberlain V. Muli helped here
@@ -131,28 +131,50 @@ public class GameServer {
 
     }
 
-    public boolean checkForWin(int playerID)
-    {
+    public boolean aeCollide(int pid) {
+        int playerID = pid;
+            if (playerID == 1){
+                return!(
+                adamX + 12 <= eveX ||
+                adamX >= eveX + 12 ||
+                adamY + 12 <= eveY ||
+                adamY >= eveY + 12);
+            } else {
+                return!(
+                eveX + 12 <= adamX ||
+                eveX >= adamX + 12 ||
+                eveY + 12 <= adamY ||
+                eveY >= adamY + 12);
+            }
+    }
 
-        if (me.isColliding(enemy)){
+    public boolean doesAdamWin(MazeBlock other) {
+        return!(adamX + 12 <= other.getX() ||
+                adamX >= other.getX() + other.getWidth() ||
+                adamY + 12 <= other.getY() ||
+                adamY >= other.getY() + other.getHeight());
+    }
+
+    public boolean checkForWin(int pid)
+    {
+        int playerID = pid;
+
+        if (aeCollide(playerID)){
             System.out.println("Eve won!");
             end = true;
-
             return end;
         }
 
         for(MazeBlock block : canvasMaze)
         {
-            if(playerID == 1 && me.isColliding(block) && block instanceof Gate){
+            if(playerID == 1 && doesAdamWin(block) && block instanceof Gate){
                 System.out.println("Adam won!");
                 end = true;
-                winner = playerID;
-
+                
                 return end;
-            } else if (playerID == 2 && enemy.isColliding(block) && block instanceof Gate){
-                System.out.println("Eve won!");
+            } else if (playerID == 2 && doesAdamWin(block) && block instanceof Gate){
+                System.out.println("Adam won!");
                 end = true;
-                winner = playerID;
 
                 return end;
             }
@@ -189,41 +211,31 @@ public class GameServer {
                     {
                         //Receiving ADAM coordinates
 
-                        //end = dataIn.readBoolean();
-
+                        end = dataIn.readBoolean();
                         
                         if (end==true)
                         {
-                            // try{
-                            //     Thread.sleep(25);
-                            // }catch(InterruptedException ix){
-                            //     System.out.println("InterruptedException from WTC run()");
-                            // }
                             closeConnection(playerID);
                         }
                         
                         adamX = dataIn.readDouble();
                         adamY = dataIn.readDouble();
-                        end = checkForWin(playerID, me, enemy);
+                        end = checkForWin(playerID);
                         
                     } else{
 
                         end = dataIn.readBoolean(); //true
-                        if (end)
+                        if (end==true)
                         {
 
-                            try{
-                                Thread.sleep(25);
-                            }catch(InterruptedException ix){
-                                System.out.println("InterruptedException from WTC run()");
-                            }
-                            //pause tell other player to stop HERE
                             closeConnection(playerID);
                         }
 
                         //Receiving EVE coordinates
                         eveX = dataIn.readDouble();
                         eveY = dataIn.readDouble();
+                        end = checkForWin(playerID);
+
                     }
                 }
             }catch(IOException iox){
@@ -259,6 +271,8 @@ public class GameServer {
                     {
                        
                         dataOut.writeBoolean(end);
+                        dataOut.flush();
+
 
                         //send Eve coordinates to Adam
                         dataOut.writeDouble(eveX);
@@ -269,6 +283,8 @@ public class GameServer {
 
                         
                         dataOut.writeBoolean(end);
+                        dataOut.flush();
+
                         
                         //send Adam coordinates to Eve
                         dataOut.writeDouble(adamX);

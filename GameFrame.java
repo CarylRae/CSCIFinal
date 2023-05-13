@@ -73,7 +73,7 @@ public class GameFrame extends JFrame{
         createPlayers();
 
         gc = new GameCanvas(width,height,this);
-        //end = gc.checkForWin(playerID,me,enemy);
+        end = false;
 
         
         cp.add(gc);
@@ -243,7 +243,7 @@ public class GameFrame extends JFrame{
                 
                 while(end == false)
                 {
-                    end = dataIn.readBoolean();
+                    end = dataIn.readBoolean(); 
 
                     //Read Enemy coordinates from Server
                     if (end==true)
@@ -299,16 +299,15 @@ public class GameFrame extends JFrame{
             try{
                 while(end==false)
                 {
-                    //Send Player's coordinates to Server
                     if (me != null) {
-                        //end = gc.checkForWin(playerID,me,enemy);
+                        
                         dataOut.writeBoolean(end);
                         dataOut.flush();
 
                         //send then close
                         if (end == true)
                         {
-                            
+
                             closeConnection();
                         }
 
@@ -351,5 +350,4 @@ public class GameFrame extends JFrame{
             }
         }
 
-    
 }
